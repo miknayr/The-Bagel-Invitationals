@@ -9,7 +9,7 @@ Everybody loves to play virtual golf even if they dont enjoy golf itself. This g
 
 
 # H2 Wireframe
-<img src="img/bagel_WF-1.jpg" alt="wireframe">
+![Alt text](images/bagel_WF-1.png?raw=true "Title")
 
 # H2 Tech being used
 - HTML/CSS/Javascript
