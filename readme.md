@@ -1,21 +1,21 @@
-# H1 The Bagel Championships
+# The Bagel Championships
 
 This is a golf game. 
 taking in judgement, precision, and interpretation to get a hole in one. 
 
-# H2 About
+# About
 For this project, I plan on making a simple golf game, using linear algebra and simple math.
 Everybody loves to play virtual golf even if they dont enjoy golf itself. This game gives you the opportunity to test your skills of judgement and navigation to get a hole-in-one!!
 
 
-# H2 Wireframe
-![Alt text](images/bagel_WF-1.png?raw=true "Title")
+# Wireframe
+![Alt text](images/bagel_WF-1.png?raw=true "golf wireframe")
 
-# H2 Tech being used
+# Tech being used
 - HTML/CSS/Javascript
 - HTML 5 canvas
 
-# H2 MVP Goals
+# MVP Goals
 - [ ] Having the formula for game logic (gauging distance + angle = hole location) work as intended.
 - [ ] being able to play the game from top down map only
 - [ ] render the starting screen at the teebox
@@ -27,7 +27,7 @@ Everybody loves to play virtual golf even if they dont enjoy golf itself. This g
 
 
 
-# H2 Stretch Goals
+# Stretch Goals
  - [ ] Add ambient sounds
  - [ ] Being able to "select your club", being able to choose club distance
  - [ ] stylizing the game to be fluid with 3 different animations. one for swing (two frames) one for ball travel, and one for visual landing of ball whether its over, under, or in!
@@ -43,7 +43,7 @@ Everybody loves to play virtual golf even if they dont enjoy golf itself. This g
 - [ ] creating formulas for how field conditions (fairway, rough, bunker) affect the distance/power
 - [ ] creating a 3 hole course
 
-# H2 Roadblocks 
+# Roadblocks 
 I think for me, I'm still trying to wrap my head around the integration of how all this comes together... so thats a road block all on its own.
 I dont know how to actually get a "ball" to "go into the hole".
 
@@ -51,6 +51,8 @@ linking all the javascript coding together
 
 understanding how objects might interact with each other?
 for example; having the ball interact with the hole, and when they "collide" it creates a success (weston has hit detection)
+
+
 
 
 
