@@ -10,14 +10,15 @@ and then work on everything else.
 
 
 
-
+ball flying across the screen:
 https://billmill.org/static/canvastutorial/library.html
 
 
-
+ball dropping js thing:
 https://plnkr.co/edit/rnGU4RsR71ShA8kE?p=preview&preview
 
-
+collision detection:
+https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
 
 
 
@@ -82,5 +83,6 @@ also plotting out points on canvas is confusing.
 
 
 
-power bar is made, 
+power bar is made, thanks for Jorge Casique!
 but need to finesse when clicking "swing" - line 12 
+need to only take two clicks to turn off and on
