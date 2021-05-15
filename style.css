@@ -1,6 +1,20 @@
-body  {
-    margin-left: 150px;
+.mainContent {
+    margin-left: 50px;
     margin-right: auto;
     display: justify;
 
 } 
+
+#myProgress {
+    width: 520px;
+    height: 30px;
+    position: relative;
+    background-color: #ddd;
+  }
+  
+  #myBar {
+    background-color: #4CAF50;
+    width: 10px;
+    height: 30px;
+    position: absolute;
+  }

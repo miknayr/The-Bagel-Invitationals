@@ -2,13 +2,39 @@ document.addEventListener('DOMContentLoaded',domloaded,true);
 function domloaded(){
     // your code here.
 
+const resetButton = document.querySelector('input[type="reset"]')
 
 function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  
+  resetButton.addEventListener('click', (e) => {  
+    var elem = document.getElementById("myBar");   
+    var width = 1;
+    var reverse = false;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (reverse == true) {
+        width--;
+        elem.style.width = width + '%'
+        if (width < 1) {
+            reverse = false
+        }
+      } else {
+        width++; 
+        elem.style.width = width + '%';
+        if (width > 99) {
+            reverse = true
+        }
+      }
+    }
+  })
+
+
 var teeToGreen = document.getElementById("myCanvas");
 var holeDistance = teeToGreen.getContext("2d");
+
 
 var xStart = randomInteger(100, 400)
 var yStart = randomInteger(800, 950)
@@ -20,6 +46,8 @@ const theBrendan = (x, y, x2, y2) => {
     return Math.round(Math.sqrt((x - x2) ** 2 + (y - y2) ** 2));
 }
 
+
+
 var distanceToHole = theBrendan(xStart, yStart, xHole, yHole);
 
 console.log(distanceToHole);
@@ -29,6 +57,9 @@ holeDistance.moveTo(xStart, yStart); // xStart,yStart <---- plug in the above
 holeDistance.lineTo(xHole, yHole); // xHole, yHole <--- plug in the above
 holeDistance.lineWidth = 0; // <--- figure out what this does
 holeDistance.stroke(); // <-- figure out what this does.
+
+
+
 
 
   
@@ -73,6 +104,13 @@ teeBox.stroke();
 // this is the end of the tee box location
 
 
+
+
+
+
+
+
+// ~~~~~~~~~~~~~ this is the end of the dom content loader ~~~~~~~~~~~~~~~ //
 }
 
 
@@ -80,6 +118,18 @@ teeBox.stroke();
 document.addEventListener('click', () => {
     console.log('clicked canvas');
 })
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // can you stack canvas's on top of each other !!! yes you can. theyre transparent and you use z-index

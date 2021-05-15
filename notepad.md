@@ -38,12 +38,7 @@ https://html5.litten.com/using-multiple-html5-canvases-as-layers/
 get help with making a math.random function to spit out numbers,
 
 
-
-
-
-
 create var xstart into a math random function and replace each coordinate with the proper variable.
-
 
 
 power variable : 
@@ -62,9 +57,30 @@ https://stackoverflow.com/questions/5496576/increase-and-decrease-a-variable-unt
 
 
 
-5/14 10pm update;
-- added random number generators for both the starting tee (bottom square) and the hole (top square)
-- added random number generators for both tee box (bottom square) and the green box (top square)
-- added "the brendan" to figure out the distance to the hole for gauging "power" (pythagorean theorem via brendan)
-- bottom of code has "ball" class constructor to check out and integrate
-- cleaned up code to be more efficient
+
+
+this bar needs to get the distanceToHole[x] 
+i need it fit whtin 100%
+
+
+
+the interval goes up from 1-100 and then back down
+850 --> 100%, 10% 850, 20% of 850 ~
+
+x = 850
+
+make interval goes up and down
+
+24% = 204yd
+
+100% power interval  ==.01 ~ 1
+
+interval = ()
+
+
+also plotting out points on canvas is confusing.
+
+
+
+power bar is made, 
+but need to finesse when clicking "swing" - line 12 
