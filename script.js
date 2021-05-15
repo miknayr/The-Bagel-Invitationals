@@ -7,28 +7,6 @@ function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-// function distanceToHole(yDistance, xDistance){
-//     return Math.sqrt(sideA + sideB);
-//   }
-
-//   function sideA = {
-//     (yStart-yHole)
-//   }
-//   function sideB = {
-//         (xstart-xHole)
-//     }
-
-//  function squareIt(number) {
-//       return number ** 2;
-//     }
-// var yDistance = squareIt(yStart-yHole)
-
-// var xDistance = squareIt(xStart-xHole)
-   
-
-// console.log(distanceToHole(4, 3)); 
-
-
 var teeToGreen = document.getElementById("myCanvas");
 var holeDistance = teeToGreen.getContext("2d");
 
