@@ -89,3 +89,8 @@ when swing variable is set to X: execute
 
 
 overlay visual on powerbar to indicate the power? draw it using transparent png maybe...
+
+
+
+if swing button is pressed twice, log swingpower and clear interval?
+
