@@ -26,3 +26,10 @@
 - otherwise, brendan has an idea.
 
 - figure out bootstrap integration so we can add the meme screen
+
+
+
+5/16 4pm update; 
+- added audio and visual queues, volume is adjustable, understand how to extend it further right for more full screen usage
+- added delay for audio to stop and image to disappear
+- still need to figure out 2d interaction.
