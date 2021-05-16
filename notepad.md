@@ -80,6 +80,8 @@ function handlePlayerChange() {
     statusDisplay.innerHTML = currentPlayerTurn();
 }
 
+console log shows width 0-100 
+
 when swing is pressed, variable is set to X
 when swing is pressed again, variable is set to O
 

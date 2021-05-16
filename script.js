@@ -14,31 +14,40 @@ function randomInteger(min, max) {
     var elem = document.getElementById("myBar");   
     var swingPower = 0;
     var reverse = false;
+   
     var id = setInterval(power, 10); // <-- power is fucntion, 1000 is ms, 10 is good
     function power() {
-      if (reverse == true) {
-        console.log(swingPower)
-        swingPower--;
-        elem.style.width = swingPower + '%'
-        if (swingPower < 1) {
-            reverse = false
-        }
-      } else {
-        console.log(swingPower)
-        swingPower++; 
-        elem.style.width = swingPower + '%';
-        if (swingPower > 99) {
-            reverse = true
-        }
-      }
+       
+       
+            if (reverse == true) {
+                
+                console.log(swingPower)
+                swingPower--;
+                elem.style.width = swingPower + '%'
+                if (swingPower < 1) {
+                    reverse = false
+                }
+             
+            } else {
+               
+                console.log(swingPower)
+                swingPower++; 
+                elem.style.width = swingPower + '%';
+                if (swingPower > 99) {
+                    reverse = true
+                }
+            }
+        
     }
   })
 
 
 var teeToGreen = document.getElementById("myCanvas");
 var holeDistance = teeToGreen.getContext("2d");
+var greenHole = teeToGreen.getContext("2d");
+var teePin = teeToGreen.getContext("2d");
 
-
+// coordinates for the hole
 var xStart = randomInteger(100, 400)
 var yStart = randomInteger(800, 950)
 var xHole = randomInteger(50, 400)
@@ -49,9 +58,8 @@ const theBrendan = (x, y, x2, y2) => {
     return Math.round(Math.sqrt((x - x2) ** 2 + (y - y2) ** 2));
 }
 
-
-
 var distanceToHole = theBrendan(xStart, yStart, xHole, yHole);
+
 
 console.log(distanceToHole);
 
@@ -63,7 +71,20 @@ holeDistance.stroke(); // <-- figure out what this does.
 
 
 
+greenHole.beginPath();
+greenHole.arc(xHole, yHole, 6, 0, 2 * Math.PI);
+greenHole.fillStyle = "grey";
+greenHole.fill();
+greenHole.strokeStyle = "black";
+greenHole.stroke();
 
+
+teePin.beginPath();
+teePin.arc(xHole, yHole, 3, 0, 2 * Math.PI);
+teePin.fillStyle = "black";
+teePin.fill();
+teePin.strokeStyle = "black";
+teePin.stroke();
 
   
 
