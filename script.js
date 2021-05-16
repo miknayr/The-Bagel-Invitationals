@@ -9,20 +9,24 @@ function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  function supaHotFire() {
-      document.getElementById("y").src="./images/supahotfire.gif"
-    }
+//   function supaHotFire() {
+//       document.getElementById("y").src="./images/supahotfire.gif"
+//     }
     
     function tiger() {
-        document.getElementById("z").src="./images/tiger.gif"
+        document.getElementById("z").src="./images/tigerlong2.gif"
     }
     
     function ballwin() {
         setTimeout(function(){
-            hype.volume = 0.3
+            hype.volume = 0.4
             hype.play();
             tiger();
-        }, 2000);
+        }, 4300);
+        setTimeout(function(){
+            document.getElementById("z").src=""
+        }, 33000);
+        
 
     }
 
@@ -85,6 +89,7 @@ var rightPos = xStart + 20
 
 var gameStatus = null;
 var hype = document.getElementById("hype"); 
+var lowstinger = document.getElementById("lowstinger"); 
 var swing = document.getElementById("swing"); 
 
 
@@ -154,7 +159,7 @@ const holeInOne = () => {
     
     if (swingPower < 95) {
         swing.play();
-        swing.volume = 0.5
+        swing.volume = 0.8
         gameStatus = false;
        
         console.log('you lose')
@@ -162,8 +167,8 @@ const holeInOne = () => {
        
     } else {
         gameStatus = true;
-        swing.volume = 0.5
-        swing.play();
+        lowstinger.volume = .8
+        lowstinger.play();
         ballwin();
  
         console.log('you win')
