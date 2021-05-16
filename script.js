@@ -2,29 +2,32 @@ document.addEventListener('DOMContentLoaded',domloaded,true);
 function domloaded(){
     // your code here.
 
-const resetButton = document.querySelector('input[type="reset"]')
+const swingButton = document.querySelector('input[type="reset"]')
+// const swingButton = document.querySelector('button[class="button"]')
 
 function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   
-  resetButton.addEventListener('click', (e) => {  
+  swingButton.addEventListener('click', (e) => {  
     var elem = document.getElementById("myBar");   
-    var width = 1;
+    var swingPower = 0;
     var reverse = false;
-    var id = setInterval(frame, 10);
-    function frame() {
+    var id = setInterval(power, 10); // <-- power is fucntion, 1000 is ms, 10 is good
+    function power() {
       if (reverse == true) {
-        width--;
-        elem.style.width = width + '%'
-        if (width < 1) {
+        console.log(swingPower)
+        swingPower--;
+        elem.style.width = swingPower + '%'
+        if (swingPower < 1) {
             reverse = false
         }
       } else {
-        width++; 
-        elem.style.width = width + '%';
-        if (width > 99) {
+        console.log(swingPower)
+        swingPower++; 
+        elem.style.width = swingPower + '%';
+        if (swingPower > 99) {
             reverse = true
         }
       }
