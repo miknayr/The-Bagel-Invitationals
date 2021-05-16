@@ -2,6 +2,7 @@
     margin-left: 50px;
     margin-right: auto;
     display: justify;
+    position: relative;
 
 } 
 
@@ -17,4 +18,16 @@
     width: 10px;
     height: 30px;
     position: absolute;
+  }
+
+  .result-message {
+       
+        position: absolute;
+        text-align: center;
+        font-family: comic sans ms;
+        margin: 300px 135px;
+        width: 20 auto;
+        height: auto;
+
+       
   }

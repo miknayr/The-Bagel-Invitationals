@@ -9,6 +9,24 @@ function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  function supaHotFire() {
+      document.getElementById("y").src="./images/supahotfire.gif"
+    }
+    
+    function tiger() {
+        document.getElementById("z").src="./images/tiger.gif"
+    }
+    
+    function ballwin() {
+        setTimeout(function(){
+            hype.volume = 0.3
+            hype.play();
+            tiger();
+        }, 2000);
+
+    }
+
+
 var shouldStartTimer = true;
 var intervalId = null; 
 var swingPower = 0;
@@ -38,7 +56,7 @@ swingButton.addEventListener('click', (e) => {
         shouldStartTimer = false;
     } else {
         clearInterval(intervalId);
-        shouldStartTimer = true;
+        shoudStartTimer = true;
         holeInOne()
     }
 
@@ -66,6 +84,10 @@ var leftPos = xStart - 20
 var rightPos = xStart + 20
 
 var gameStatus = null;
+var hype = document.getElementById("hype"); 
+var swing = document.getElementById("swing"); 
+
+
 
 const theBrendan = (x, y, x2, y2) => {
     return Math.round(Math.sqrt((x - x2) ** 2 + (y - y2) ** 2));
@@ -129,17 +151,29 @@ var winningDistance = .50 * distanceToHole;
 var playerSkill = .01 * swingPower * distanceToHole;
 
 const holeInOne = () => {
+    
     if (swingPower < 95) {
+        swing.play();
+        swing.volume = 0.5
         gameStatus = false;
+       
         console.log('you lose')
         // make function for losing
        
     } else {
         gameStatus = true;
+        swing.volume = 0.5
+        swing.play();
+        ballwin();
+ 
         console.log('you win')
+        
+    
         //make fucntion for winning
        
+
     }
+    
 
 }
 

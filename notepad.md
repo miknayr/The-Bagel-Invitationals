@@ -94,3 +94,9 @@ overlay visual on powerbar to indicate the power? draw it using transparent png 
 
 if swing button is pressed twice, log swingpower and clear interval?
 
+
+
+
+
+supa hot fire
+https://media.giphy.com/media/Aff4ryYiacUO4/giphy.gif

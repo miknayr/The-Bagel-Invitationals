@@ -19,3 +19,10 @@
 
 5/15 1130pm update;
 - we have a "working" game! open console to see your results when you click "swing"
+
+
+5/16 12am update;
+- need to figure out "ball" canvas, write it in and stack it up with z-index maybe?
+- otherwise, brendan has an idea.
+
+- figure out bootstrap integration so we can add the meme screen
