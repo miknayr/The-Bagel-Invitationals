@@ -9,16 +9,12 @@ function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-
-  
-  var shouldStartTimer = true;
-  var intervalId = null; 
-  var swingPower = 0;
-  swingButton.addEventListener('click', (e) => {  
+var shouldStartTimer = true;
+var intervalId = null; 
+var swingPower = 0;
+swingButton.addEventListener('click', (e) => {  
     var elem = document.getElementById("myBar");   
-   
     var reverse = false;
-      
     const power = () => {
         
         if (reverse == true) {
@@ -48,15 +44,9 @@ function randomInteger(min, max) {
 
  })
   
-
 var teeToGreen = document.getElementById("myCanvas");
-var holeDistance = teeToGreen.getContext("2d");
-var greenBox = teeToGreen.getContext('2d');
-var greenHole = teeToGreen.getContext('2d');
-var teeBox = teeToGreen.getContext('2d');
-var teePin = teeToGreen.getContext("2d");
-var leftPin = teeToGreen.getContext("2d");
-var rightPin = teeToGreen.getContext("2d");
+var holeDistance = teeToGreen.getContext('2d');
+var shapes = teeToGreen.getContext('2d');
 
 
 // coordinates for the hole
@@ -77,85 +67,63 @@ var rightPos = xStart + 20
 
 var gameStatus = null;
 
-
-
-
 const theBrendan = (x, y, x2, y2) => {
     return Math.round(Math.sqrt((x - x2) ** 2 + (y - y2) ** 2));
 }
 
 var distanceToHole = theBrendan(xStart, yStart, xHole, yHole);
 
-
 console.log(distanceToHole);
 
 holeDistance.beginPath(0,0); // <--- not sure what this does.
 holeDistance.moveTo(xStart, yStart); // xStart,yStart <---- plug in the above
 holeDistance.lineTo(xHole, yHole); // xHole, yHole <--- plug in the above
-// holeDistance.lineWidth = 0; // <--- figure out what this does  remove this to remove the line
-// holeDistance.stroke(); // <-- figure out what this does. remove this to remove the line
-
-  
 
 // interval that goes up to the max distance + 50, and then back down, with bar indicating 25%, 50% and 75% and 90%, at a rate of 50ms ? something possible...
 // interval controls the yBall for distance, space bar to toggle power?
 // degree to control the aim, like the clock but can be manual moved with indicator for where its pointing. using keyboard? 
 
-
-// can intervals go to the max and then back down?
-
-
-// these four, x y w h, control position of the green, should be randomly generated but scaled off of the hole location
-//var xGreen = point of xHole, value is xHole minus (more than or equal to 15 but less than or equal to 60 )
-
 // this is the green hole location
 
-greenBox.rect(xGreen, yGreen, wGreen, hGreen); //can add border for rough edge, 15px maybe  <-- this is aesthetics
-greenBox.fillStyle = "#7cfc00";
-greenBox.fill();
+shapes.rect(xGreen, yGreen, wGreen, hGreen); //can add border for rough edge, 15px maybe  <-- this is aesthetics
+shapes.fillStyle = "#7cfc00"; // this is the green box
+shapes.fill();
 
 // for some reason this has to be here??? or else the boxes wont fill properly
-greenHole.beginPath();
-greenHole.fillStyle = "yellow";
-greenHole.arc(xHole, yHole, 10, 0, 5 * Math.PI);
-greenHole.fill(); 
+shapes.beginPath();
+shapes.fillStyle = "white"; // this is the hole cup
+shapes.arc(xHole, yHole, 10, 0, 5 * Math.PI);
+shapes.fill(); 
+
+shapes.rect(xTee, yTee, 75, 30 );
+shapes.fillStyle = "#4ea12b"; // this is the tee box
+shapes.fill();
+
+shapes.beginPath();
+shapes.fillStyle = "white"; // this is the hole cup
+shapes.arc(xHole, yHole, 10, 0, 5 * Math.PI);
+shapes.fill();
 
 
-teeBox.rect(xTee, yTee, 75, 30 );
-teeBox.fillStyle = "#5ecc2f";
-teeBox.fill();
+shapes.beginPath();
+shapes.arc(xStart, yStart, 2, 0, 2 * Math.PI);
+shapes.fillStyle = "black"; // this is the ball
+shapes.fill();
+shapes.strokeStyle = "white";
+shapes.stroke();
 
-// this is the end of the green hole location
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// this is the tee box location
+shapes.beginPath();
+shapes.arc(leftPos, yStart, 2, 0, 2 * Math.PI);
+shapes.fillStyle = "blue"; // this is the left pin
+shapes.fill(); 
 
-greenHole.beginPath();
-greenHole.fillStyle = "white";
-greenHole.arc(xHole, yHole, 10, 0, 5 * Math.PI);
-greenHole.fill();
-
-
-teePin.beginPath();
-teePin.arc(xStart, yStart, 2, 0, 2 * Math.PI);
-teePin.fillStyle = "black";
-teePin.fill();
-teePin.strokeStyle = "white";
-teePin.stroke();
-
-leftPin.beginPath();
-leftPin.arc(leftPos, yStart, 2, 0, 2 * Math.PI);
-leftPin.fillStyle = "blue";
-leftPin.fill();
-
-rightPin.beginPath();
-rightPin.arc(rightPos, yStart, 2, 0, 2 * Math.PI);
-rightPin.fillStyle = "blue";
-rightPin.fill();
-
+shapes.beginPath();
+shapes.arc(rightPos, yStart, 2, 0, 2 * Math.PI);
+shapes.fillStyle = "blue"; // this is the right pin
+shapes.fill();
 
 
 // this is the end of the tee box location
-
 
 var winningDistance = .50 * distanceToHole;
 var playerSkill = .01 * swingPower * distanceToHole;
@@ -176,13 +144,10 @@ const holeInOne = () => {
 }
 
 // ~~~~~~~~~~~~~ this is the end of the dom content loader ~~~~~~~~~~~~~~~ //
-
-
-
 }
 
 document.addEventListener('click', () => {
-    console.log('clicked canvas');
+   
 })
 
 
