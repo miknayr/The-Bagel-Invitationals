@@ -9,15 +9,12 @@ function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-//   function supaHotFire() {
-//       document.getElementById("y").src="./images/supahotfire.gif"
-//     }
     
-    function tiger() {
-        document.getElementById("z").src="./images/tigerlong2.gif"
-    }
+function tiger() {
+    document.getElementById("z").src="./images/tigerlong2.gif"
+}
     
-    function ballwin() {
+function ballwin() {
         setTimeout(function(){
             hype.volume = 0.4
             hype.play();
@@ -28,47 +25,25 @@ function randomInteger(min, max) {
         }, 33000);
         
 
-    }
+}
 
-
+// ~~~~~~ most variables~~~~~~~~~~~
 var shouldStartTimer = true;
 var intervalId = null; 
 var swingPower = 0;
-swingButton.addEventListener('click', (e) => {  
-    var elem = document.getElementById("myBar");   
-    var reverse = false;
-    const power = () => {
-        
-        if (reverse == true) {
-            swingPower--;
-            
-            elem.style.width = swingPower + '%'
-            if (swingPower < 1) {
-                reverse = false
-            }
-        } else {
-            swingPower++; 
-            
-            elem.style.width = swingPower + '%';
-            if (swingPower > 99) {
-                reverse = true
-            }
-        }
-    }
-    if (shouldStartTimer) {
-        intervalId = setInterval(power, 10);
-        shouldStartTimer = false;
-    } else {
-        clearInterval(intervalId);
-        shoudStartTimer = true;
-        holeInOne()
-    }
 
- })
+
   
-var teeToGreen = document.getElementById("myCanvas");
+var teeToGreen = document.getElementById("layerOne");
 var holeDistance = teeToGreen.getContext('2d');
 var shapes = teeToGreen.getContext('2d');
+
+var canvas = document.getElementById("layerTwo");
+var ctx = canvas.getContext("2d");
+var ballRadius = 10;
+var x = canvas.width/2;
+var y = canvas.height-30;
+
 
 
 // coordinates for the hole
@@ -81,7 +56,7 @@ var xGreen = xHole - (randomInteger(15, 60));
 var yGreen = yHole - (randomInteger(15, 60));
 var wGreen = randomInteger(75, 120);
 var hGreen = randomInteger(75, 120);
-
+//tee marker, visuals
 var xTee = xStart - 40
 var yTee = yStart - 15
 var leftPos = xStart - 20
@@ -93,6 +68,14 @@ var lowstinger = document.getElementById("lowstinger");
 var swing = document.getElementById("swing"); 
 
 
+var xGraph = xStart
+var yGraph = yStart
+
+
+var xDistance = xStart - xHole;
+var yDistance = yStart - yHole;
+
+
 
 const theBrendan = (x, y, x2, y2) => {
     return Math.round(Math.sqrt((x - x2) ** 2 + (y - y2) ** 2));
@@ -100,15 +83,21 @@ const theBrendan = (x, y, x2, y2) => {
 
 var distanceToHole = theBrendan(xStart, yStart, xHole, yHole);
 
-console.log(distanceToHole);
+var winningDistance = .9 * distanceToHole;
+
+// ~~~~~~~~ end of variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+console.log('x start y start: ' + xStart + " | "+ yStart)
+console.log('x hole y hole: ' + xHole + " | "+ yHole)
+
+console.log("this is the numeric value of xDistance: " + Math.abs(xDistance))
+console.log("this is the numeric value of yDistance: " + Math.abs(yDistance))
+console.log("this is the distance to hole: " + distanceToHole);
+
 
 holeDistance.beginPath(0,0); // <--- not sure what this does.
 holeDistance.moveTo(xStart, yStart); // xStart,yStart <---- plug in the above
 holeDistance.lineTo(xHole, yHole); // xHole, yHole <--- plug in the above
-
-// interval that goes up to the max distance + 50, and then back down, with bar indicating 25%, 50% and 75% and 90%, at a rate of 50ms ? something possible...
-// interval controls the yBall for distance, space bar to toggle power?
-// degree to control the aim, like the clock but can be manual moved with indicator for where its pointing. using keyboard? 
 
 // this is the green hole location
 
@@ -150,14 +139,34 @@ shapes.fillStyle = "blue"; // this is the right pin
 shapes.fill();
 
 
+// ~~~~~second canvas~~~~~~~~
+
+// function drawBall() {
+    ctx.beginPath();
+    ctx.arc(250, 250, ballRadius, 0, Math.PI*2); // <- fill xGraph, yGraph
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath();
+//   }
+  
+//   function drawCup() {
+      ctx.beginPath();
+      ctx.arc(100, 100, 10, 0, 5 * Math.PI); // <--- fill xHole, yHole
+      ctx.fill();
+      ctx.fillStyle = "red";
+      ctx.fill();
+      ctx.closePath();
+//   }
+// ~~~~~~~~ second canvas~~~~~~~~~~~~~
+
+
 // this is the end of the tee box location
 
-var winningDistance = .50 * distanceToHole;
-var playerSkill = .01 * swingPower * distanceToHole;
+// var playerSkill = .01 * swingPower * distanceToHole;
 
 const holeInOne = () => {
     
-    if (swingPower < 95) {
+    if (swingDistance < winningDistance) {
         swing.play();
         swing.volume = 0.8
         gameStatus = false;
@@ -182,126 +191,46 @@ const holeInOne = () => {
 
 }
 
+swingButton.addEventListener('click', (e) => {  
+    var elem = document.getElementById("myBar");   
+    var reverse = false;
+    const power = () => {
+        
+        if (reverse == true) {
+            swingPower--;
+            // console.log(swingPower)
+            elem.style.width = swingPower + '%'
+            if (swingPower < 1) {
+                reverse = false
+            }
+        } else {
+            swingPower++; 
+            // console.log(swingPower)
+            elem.style.width = swingPower + '%';
+            if (swingPower > 99) {
+                reverse = true
+            }
+        }
+    }
+    if (shouldStartTimer) {
+        intervalId = setInterval(power, 10);
+        shouldStartTimer = false;
+    } else {
+        clearInterval(intervalId);
+        shoudStartTimer = true;
+        holeInOne()
+    }
+
+    var swingDistance = swingPower * distanceToHole * .01;
+   
+    console.log("Your Swing Distance is: " + swingDistance)
+ })
+
 // ~~~~~~~~~~~~~ this is the end of the dom content loader ~~~~~~~~~~~~~~~ //
 }
 
 document.addEventListener('click', () => {
    
+   
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-// can you stack canvas's on top of each other !!! yes you can. theyre transparent and you use z-index
-
-// need to figure out how to make teebox into an element to interact with
-
-// document.getElementById("myBtn").addEventListener("click", function() {
-//     document.getElementById("demo").innerHTML = "Hello World";
-
-
-
-// !!! this starts the "ball"
-
-// let canvas = document.getElementById('myCanvas')
-// let context = canvas.getContext('2d');
-
-
-
-// class Circle {
-//     constructor(xpoint, ypoint, radius, color) {
-//         this.xpoint = xpoint;
-//         this.ypoint = ypoint;
-//         this.radius = radius;
-//         this.color = color;
-//     }
-
-//     draw(context) {
-//         context.beginPath();
-//         context.arc(this.xpoint,this.ypoint, this.radius, 0, Math.PI * 2, false);
-//         context.strokeStyle = 'grey'
-//         context.lineWidth = 3;
-//         context.fillStyle = this.color;
-//         context.fill();
-//         context.stroke();
-//         context.closePath();
-//     }
-
-//     changeColor(newColor) {
-//         this.color = newColor;
-//         this.draw(context);
-//     }
-
-   
-//     clickCircle(xmouse, ymouse) {
-//         const distance = 
-//         Math.sqrt(
-            
-//             ( (xmouse - this.xpoint) * (xmouse - this.xpoint ) ) 
-//             + 
-//             ( (ymouse - this.ypoint) * (ymouse - this.ypoint ) ) 
-//         );
-//         if (distance < this.radius) {
-//             this.changeColor('#56f');
-//             return true;
-//         } else {
-//             this.changeColor('#f56');
-//             return false;
-//         }
-//             console.log(distance);
-//     }
-
-// }
-
-
-// let circle = new Circle(200,200,100, '#f56');
-// circle.draw(context)
-
-
-// // document.addEventListener('click' () => {
-// //     console.log('clicked canvas');
-// // });
-// // we need to 
-// canvas.addEventListener('click', (event) => {
-//     const rect = canvas.getBoundingClientRect();
-//     const x = event.clientX - rect.left;
-//     const y = event.clientY - rect.top;
-//     console.log ('x: ' + x + ' y: ' + y)
- 
-//     console.log(circle.clickCircle(x, y));
-
-//     // console.log('click canvas');
-// })
-
-// }
-
-
-
-
-
-
-
-
-
-
-// hit collision for ball into hole
-// https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-
-
-// ball moving code here https://billmill.org/static/canvastutorial/move.html maybe? jquery?
-// ball moving left to right, maybe golf ball landing, can do three animations, for over under and hole in one
-// https://plnkr.co/edit/rnGU4RsR71ShA8kE?p=preview&preview
-// ball animation plays after 3 seconds after the ball was hit
-
-
-
-//generate ball at xstart, ystart

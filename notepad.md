@@ -98,5 +98,61 @@ if swing button is pressed twice, log swingpower and clear interval?
 
 
 
-supa hot fire
-https://media.giphy.com/media/Aff4ryYiacUO4/giphy.gif
+ball has to travel the equivalent of swingPower percent x distanceToHole
+
+
+
+
+
+
+curving mechanic??
+https://www.geeksforgeeks.org/how-to-draw-smooth-curve-through-multiple-points-using-javascript/
+https://www.geeksforgeeks.org/p5-js-curve-function/
+
+
+
+https://www.html5rocks.com/en/tutorials/canvas/performance/#toc-mul-canvas
+
+
+
+plotting the graph point
+// y = mx + b
+// var yGraph = (yHole - yStart)
+// var xGraph = (xHole - xStart)
+
+// var m = yGraph / xGraph
+
+// b = xStart - m * yStart  // <-- maybe useful.
+
+ 
+review this solution tomorrow
+ https://stackoverflow.com/questions/17083580/i-want-to-do-animation-of-an-object-along-a-particular-path
+
+
+all useful information is being console logged, just interpret it.
+figure out how to update or subtract ball coordinates values to hole coordinates with a variable to move "the ball" its a function that can be called on.
+ 
+
+this is an infinite function.
+function draw() {
+    
+    drawBall();
+     
+    while(xGraph !== xHole && yGraph !== yHole) {
+      if(xStart < xHole) {
+          xGraph++
+          console.log(xGraph)
+      } else {
+          xGraph--
+          console.log(xGraph)
+      }
+      if(yStart < yHole) {
+          yGraph++
+          console.log(yGraph)
+      } else {
+          yGraph--
+          console.log(yGraph)
+      }
+    }
+    
+}
