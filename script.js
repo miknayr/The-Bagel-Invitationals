@@ -17,6 +17,10 @@ function randomInteger(min, max) {
     document.getElementById("z").src="./images/tigerlong2.gif"
 }
 
+
+
+
+
 // function clear() {
 //     document.getElementById("z").src="" 
 // }
@@ -24,13 +28,13 @@ function randomInteger(min, max) {
 
 function ballWin() { // celebration;
         setTimeout(function() {
-            hype.volume = 0.4
-            hype.play();
+            // hype.volume = 0.4
+            // hype.play();
             tiger();
         }, 4200);
         setTimeout(function() {
             document.getElementById("z").src=" "  
-         }, 1300);
+         }, 4000);
 }
 
 // ~~~~~~ most variables~~~~~~~~~~~
@@ -56,6 +60,8 @@ var yHole = randomInteger(50, 250)
 var xBall = xStart
 var yBall = yStart
 
+let xIncrement = xHole / xBall
+let yIncrement = yHole / yBall
 
 var xGreen = xHole - (randomInteger(15, 60));
 var yGreen = yHole - (randomInteger(15, 60));
@@ -99,13 +105,13 @@ var winningDistance = .9 * distanceToHole;
 
 // ~~~~~~~~ end of variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-// console.log('x start y start: ' + xStart + " | "+ yStart)
-// console.log('x hole y hole: ' + xHole + " | "+ yHole)
-// console.log("Your Swing Distance inside power is : " + swingDistance)
-// console.log("this is the numeric value of xDistance: " + Math.abs(xDistance))
-// console.log("this is the numeric value of yDistance: " + Math.abs(yDistance))
-// console.log("this is the distance to hole: " + distanceToHole);
-// console.log("this is winning distance: " + winningDistance)
+console.log('x start y start: ' + xStart + " | "+ yStart)
+console.log('x hole y hole: ' + xHole + " | "+ yHole)
+console.log("Your Swing Distance inside power is : " + swingDistance)
+console.log("this is the numeric value of xDistance: " + Math.abs(xDistance))
+console.log("this is the numeric value of yDistance: " + Math.abs(yDistance))
+console.log("this is the distance to hole: " + distanceToHole);
+console.log("this is winning distance: " + winningDistance)
 
 
 holeDistance.beginPath(0,0); // <--- not sure what this does.
@@ -138,7 +144,7 @@ shapes.stroke();
 shapes.fill();
 
 
-shapes.beginPath(); // <--- ball canvas 2
+shapes.beginPath(); // <--- ball
 shapes.arc(xBall, yBall, 5, 0, Math.PI*2); // <- fill xGraph, yGraph
 shapes.fillStyle = "red";
 shapes.fill();
@@ -146,13 +152,6 @@ shapes.lineWidth = 1;
 shapes.strokeStyle = 'black';
 shapes.stroke();
 shapes.closePath();
-
-// shapes.beginPath();
-// shapes.arc(xStart, yStart, 2, 0, 2 * Math.PI);
-// shapes.fillStyle = "black"; // this is the ball
-// shapes.fill();
-// shapes.strokeStyle = "white";
-// shapes.stroke();
 
 shapes.beginPath();
 shapes.arc(leftPos, yStart, 2, 0, 2 * Math.PI);
@@ -165,14 +164,23 @@ shapes.fillStyle = "blue"; // this is the right pin
 shapes.fill();
 
 function drawStatic() {
-
+    shapes.beginPath();
+    shapes.arc(leftPos, yStart, 2, 0, 2 * Math.PI);
+    shapes.fillStyle = "blue"; // this is the left pin
+    shapes.fill(); 
+    
+    shapes.beginPath();
+    shapes.arc(rightPos, yStart, 2, 0, 2 * Math.PI);
+    shapes.fillStyle = "blue"; // this is the right pin
+    shapes.fill();
+    
     shapes.rect(xGreen, yGreen, wGreen, hGreen); //can add border for rough edge, 15px maybe  <-- this is aesthetics
     shapes.fillStyle = "#7cfc00"; // this is the green box
     shapes.fill();
 
     // for some reason this has to be here??? or else the boxes wont fill properly
     shapes.beginPath();
-    shapes.fillStyle = "white"; // this is the hole cup
+    shapes.fillStyle = "white"; // this is the hole cup 2
     shapes.arc(xHole, yHole, 10, 0, 5 * Math.PI);
     shapes.fill(); 
 
@@ -335,6 +343,9 @@ const holeInOne = () => {
          console.log("this is the distance to hole: " + distanceToHole);
          console.log("this is winning distance: " + winningDistance)
  })
+ 
+
+document.getElementById("menuDist").innerText=`Distance to Hole: ${distanceToHole}`
  
 
 }
