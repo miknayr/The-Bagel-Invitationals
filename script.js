@@ -83,7 +83,6 @@ const theBrendan = (x, y, x2, y2) => {
 
 var distanceToHole = theBrendan(xStart, yStart, xHole, yHole);
 
-var winningDistance = .9 * distanceToHole;
 
 // ~~~~~~~~ end of variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -162,11 +161,12 @@ shapes.fill();
 
 // this is the end of the tee box location
 
+// var winningDistance = .5 * distanceToHole;
 // var playerSkill = .01 * swingPower * distanceToHole;
 
 const holeInOne = () => {
     
-    if (swingDistance < winningDistance) {
+    if (swingPower < 95) {
         swing.play();
         swing.volume = 0.8
         gameStatus = false;
