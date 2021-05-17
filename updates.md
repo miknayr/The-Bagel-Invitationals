@@ -33,3 +33,11 @@
 - added audio and visual queues, volume is adjustable, understand how to extend it further right for more full screen usage
 - added delay for audio to stop and image to disappear
 - still need to figure out 2d interaction.
+
+
+5/16 11pm update;
+- added 2nd canvas, z-index:1, updated names to be layers
+- created (for now) static circles that are meant to be ball and cup,
+- have console.log logging all useful numbers in order to solve "golf puzzle"
+- tasks; need to figure out how to update coordinates with a variable with an end,
+- 

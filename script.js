@@ -16,8 +16,8 @@ function tiger() {
     
 function ballwin() {
         setTimeout(function(){
-            hype.volume = 0.4
-            hype.play();
+            // hype.volume = 0.4
+            // hype.play();
             tiger();
         }, 4300);
         setTimeout(function(){
@@ -31,7 +31,6 @@ function ballwin() {
 var shouldStartTimer = true;
 var intervalId = null; 
 var swingPower = 0;
-
 
   
 var teeToGreen = document.getElementById("layerOne");
@@ -83,15 +82,21 @@ const theBrendan = (x, y, x2, y2) => {
 
 var distanceToHole = theBrendan(xStart, yStart, xHole, yHole);
 
+var swingDistance = swingPower * distanceToHole * .01;
+
+var hitDistance = null
+var winningDistance = .9 * distanceToHole;
+
 
 // ~~~~~~~~ end of variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-console.log('x start y start: ' + xStart + " | "+ yStart)
-console.log('x hole y hole: ' + xHole + " | "+ yHole)
-
-console.log("this is the numeric value of xDistance: " + Math.abs(xDistance))
-console.log("this is the numeric value of yDistance: " + Math.abs(yDistance))
-console.log("this is the distance to hole: " + distanceToHole);
+// console.log('x start y start: ' + xStart + " | "+ yStart)
+// console.log('x hole y hole: ' + xHole + " | "+ yHole)
+// console.log("Your Swing Distance inside power is : " + swingDistance)
+// console.log("this is the numeric value of xDistance: " + Math.abs(xDistance))
+// console.log("this is the numeric value of yDistance: " + Math.abs(yDistance))
+// console.log("this is the distance to hole: " + distanceToHole);
+// console.log("this is winning distance: " + winningDistance)
 
 
 holeDistance.beginPath(0,0); // <--- not sure what this does.
@@ -161,19 +166,19 @@ shapes.fill();
 
 // this is the end of the tee box location
 
-// var winningDistance = .5 * distanceToHole;
 // var playerSkill = .01 * swingPower * distanceToHole;
 
 const holeInOne = () => {
     
-    if (swingPower < 95) {
+    if (swingPower < 95) { // if you change this to swingDistance < winning distance, it doesnt work
+        
         swing.play();
         swing.volume = 0.8
         gameStatus = false;
        
         console.log('you lose')
-        // make function for losing
-       
+        console.log("Your swing Distance is: " + swingDistance)
+        console.log("this is winning distance: " + winningDistance)
     } else {
         gameStatus = true;
         lowstinger.volume = .8
@@ -181,20 +186,14 @@ const holeInOne = () => {
         ballwin();
  
         console.log('you win')
-        
-    
-        //make fucntion for winning
-       
-
-    }
-    
-
+     }
 }
 
-swingButton.addEventListener('click', (e) => {  
+
+ swingButton.addEventListener('click', (e) => {  
     var elem = document.getElementById("myBar");   
     var reverse = false;
-    const power = () => {
+    var power = () => {
         
         if (reverse == true) {
             swingPower--;
@@ -211,26 +210,24 @@ swingButton.addEventListener('click', (e) => {
                 reverse = true
             }
         }
-    }
-    if (shouldStartTimer) {
-        intervalId = setInterval(power, 10);
-        shouldStartTimer = false;
-    } else {
-        clearInterval(intervalId);
-        shoudStartTimer = true;
-        holeInOne()
-    }
-
-    var swingDistance = swingPower * distanceToHole * .01;
-   
-    console.log("Your Swing Distance is: " + swingDistance)
+        window.swingDistance = swingDistance; 
+        }
+        if (shouldStartTimer) {
+            intervalId = setInterval(power, 10);
+            shouldStartTimer = false;
+        } else {
+            clearInterval(intervalId);
+            shoudStartTimer = true;
+            holeInOne()
+        }
+      
  })
 
-// ~~~~~~~~~~~~~ this is the end of the dom content loader ~~~~~~~~~~~~~~~ //
 }
+// ~~~~~~~~~~~~~ this is the end of the dom content loader ~~~~~~~~~~~~~~~ //
 
-document.addEventListener('click', () => {
-   
-   
-})
+
+// document.addEventListener('click', () => {
+      
+// })
 

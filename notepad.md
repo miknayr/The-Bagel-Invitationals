@@ -156,3 +156,32 @@ function draw() {
     }
     
 }
+
+var swingDistance = (swingPower * .1) * distanceToHole
+console.log("Your Swing Distance is: " + swingDistance)
+
+when implementing club selection logic.
+if game status != true (null)
+    if distancetohole != 0 {
+        swing 
+       if swingpower% * maxClubDistance(300(driver),200(fairway),150(Iron),100(Wedge),50(Putter) > distancetoHole {
+        update distanceToHole;
+        update ball position
+       } else {
+           play ballWin() (celebration track)
+       }
+
+    }
+if distance to hole - clubDistance is < clubDistance
+update distanceToHole, choose club, swing again.
+
+else you win!
+
+swing again, choose club, update distance to hole
+
+
+
+
+// new problem; 
+need to convert this local function into a global function to access variables.
+
