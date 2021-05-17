@@ -1,6 +1,9 @@
+
 document.addEventListener('DOMContentLoaded',domloaded,true);
 function domloaded(){
     // your code here.
+
+    
 
 const swingButton = document.querySelector('input[type="reset"]')
 const reset = document.querySelector('reset[class="button"]')
@@ -10,23 +13,24 @@ function randomInteger(min, max) {
   }
 
     
-function tiger() {
+  function tiger() {
     document.getElementById("z").src="./images/tigerlong2.gif"
 }
+
+// function clear() {
+//     document.getElementById("z").src="" 
+// }
     
-function ballwin() {
 
-
-        setTimeout(function(){
+function ballWin() { // celebration;
+        setTimeout(function() {
             hype.volume = 0.4
             hype.play();
             tiger();
-        }, 4800);
-        setTimeout(function(){
-            document.getElementById("z").src=""
-        }, 3000);
-        
-
+        }, 4200);
+        setTimeout(function() {
+            document.getElementById("z").src=" "  
+         }, 1300);
 }
 
 // ~~~~~~ most variables~~~~~~~~~~~
@@ -34,10 +38,6 @@ var shouldStartTimer = true;
 var intervalId = null; 
 var swingPower = 0;
 
-
-var canvas = document.getElementById("layerTwo");
-var ctx = canvas.getContext("2d");
-  
 var teeToGreen = document.getElementById("layerOne");
 var holeDistance = teeToGreen.getContext('2d');
 var shapes = teeToGreen.getContext('2d');
@@ -67,7 +67,7 @@ var yTee = yStart - 15
 var leftPos = xStart - 20
 var rightPos = xStart + 20
 
-var gameStatus = null;
+// var gameStatus = null; <-- will need later??
 var hype = document.getElementById("hype"); 
 var lowstinger = document.getElementById("lowstinger"); 
 var swing = document.getElementById("swing"); 
@@ -214,12 +214,6 @@ function drawStatic() {
 
 // ~~~~~second canvas~~~~~~~~
 
-// ctx.beginPath(); // <--- ball canvas 2
-// ctx.arc(xBall, yBall, 10, 0, Math.PI*2); // <- fill xGraph, yGraph
-// ctx.fillStyle = "#0095DD";
-// ctx.fill();
-// ctx.closePath();
-
 
 function drawBall() {
     shapes.beginPath(); // <--- ball canvas 2
@@ -251,7 +245,7 @@ function drawCup() {
 
 function draw() {
     drawStatic()
-    shapes.clearRect(0, 0, canvas.width, canvas.height);
+    shapes.clearRect(0, 0, layerOne.width, layerOne.height);
     if(yBall < yHole) {
       yBall++
     } else if (yBall > yHole) {
@@ -273,7 +267,7 @@ function draw() {
 function ballMovement() {
     setTimeout(function(){
         var ballMovement = setInterval(draw, 5);
-    }, 800);
+    }, 800); // <--- adjust this number for ball movement delay
 }
 
 
@@ -287,16 +281,16 @@ const holeInOne = () => {
         gameStatus = false;
        
         console.log('you lose')
-        console.log("Your swing Distance is: " + swingDistance)
-        console.log("this is winning distance: " + winningDistance)
+        // console.log("Your swing Distance is: " + swingDistance)
+        // console.log("this is winning distance: " + winningDistance)
     } else {
         gameStatus = true;
         lowstinger.volume = .6
         lowstinger.play();
         ballMovement();
-        ballwin();
- 
+        ballWin();
         console.log('you win')
+        
      }
 }
 
@@ -332,11 +326,19 @@ const holeInOne = () => {
             holeInOne()
         }
       
+        
+         console.log('x start y start: ' + xStart + " | "+ yStart)
+         console.log('x hole y hole: ' + xHole + " | "+ yHole)
+         console.log("Your Swing Distance inside power is : " + swingDistance)
+         console.log("this is the numeric value of xDistance: " + Math.abs(xDistance))
+         console.log("this is the numeric value of yDistance: " + Math.abs(yDistance))
+         console.log("this is the distance to hole: " + distanceToHole);
+         console.log("this is winning distance: " + winningDistance)
  })
  
 
-
 }
+
 // ~~~~~~~~~~~~~ this is the end of the dom content loader ~~~~~~~~~~~~~~~ //
 
 

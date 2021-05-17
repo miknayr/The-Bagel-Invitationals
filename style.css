@@ -1,41 +1,45 @@
 .mainContent {
-    margin-left: 50px;
-    margin-right: auto;
-    
-    position: relative;
+  position: relative;
 
 } 
 
 #myProgress {
-    width: 520px;
-    height: 30px;
-    position: relative;
-    background-color: #ddd;
-  }
-  
-  #myBar {
-    background-color: #4CAF50;
-    width: 10px;
-    height: 30px;
-    position: absolute;
-  }
+  width: 520px;
+  height: 30px;
+  position: relative;
+  background-color: #ddd;
+}
 
-  .result-message {
-       
-        position: absolute;
-        text-align: center;
-        font-family: comic sans ms;
-        margin: 300px 40px;
-        width: 40px;
-        height: auto;
-    
-       
-  }
- #layerOne {
-   position: absolute;
-    background:transparent;
-  }
-  #layerTwo{
-    position: relative;
-    background: transparent;
-  }
+#myBar {
+  background-color: #4CAF50;
+  width: 10px;
+  height: 30px;
+  position: absolute;
+}
+
+.result-message {
+     
+      position: absolute;
+      text-align: center;
+      font-family: comic sans ms;
+      height: auto;
+  
+     
+}
+#layerOne {
+ position: relative;
+  background:transparent;
+}
+
+#menu {
+ 
+  width: 200px;
+  height: 200px;
+  border: 5px solid black;
+}
+
+#titleBar{
+  width: auto;
+  height: 50px;
+  border: 5px solid black;
+}

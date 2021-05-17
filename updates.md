@@ -48,3 +48,10 @@
 5/17 1145am update; 
 - added ball movement! all on one canvas, can clean up the code for removing multiple canvas'
 - tasks; need to figure out how to put the distance into a number
+
+
+5/17 2pm update;
+- added bootstrap
+- added background colors for bootstrap
+- moved gif to "screen"
+- need to work on creating variable swingdistance? maybe put them in menu to have an identity to work off of
