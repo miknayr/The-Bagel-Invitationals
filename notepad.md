@@ -185,3 +185,7 @@ swing again, choose club, update distance to hole
 // new problem; 
 need to convert this local function into a global function to access variables.
 
+
+
+
+clean up the buttons situation. swing, new hole ( add celebration button after you got hole in one)

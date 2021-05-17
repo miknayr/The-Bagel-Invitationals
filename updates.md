@@ -41,3 +41,10 @@
 - have console.log logging all useful numbers in order to solve "golf puzzle"
 - tasks; need to figure out how to update coordinates with a variable with an end,
 - 
+- have to figure out how to get "swingDistance < winning distance" line 173 to work.
+
+
+
+5/17 1145am update; 
+- added ball movement! all on one canvas, can clean up the code for removing multiple canvas'
+- tasks; need to figure out how to put the distance into a number

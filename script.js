@@ -3,7 +3,7 @@ function domloaded(){
     // your code here.
 
 const swingButton = document.querySelector('input[type="reset"]')
-// const swingButton = document.querySelector('button[class="button"]')
+const reset = document.querySelector('reset[class="button"]')
 
 function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -15,14 +15,16 @@ function tiger() {
 }
     
 function ballwin() {
+
+
         setTimeout(function(){
-            // hype.volume = 0.4
-            // hype.play();
+            hype.volume = 0.4
+            hype.play();
             tiger();
-        }, 4300);
+        }, 4800);
         setTimeout(function(){
             document.getElementById("z").src=""
-        }, 33000);
+        }, 3000);
         
 
 }
@@ -32,16 +34,15 @@ var shouldStartTimer = true;
 var intervalId = null; 
 var swingPower = 0;
 
+
+var canvas = document.getElementById("layerTwo");
+var ctx = canvas.getContext("2d");
   
 var teeToGreen = document.getElementById("layerOne");
 var holeDistance = teeToGreen.getContext('2d');
 var shapes = teeToGreen.getContext('2d');
 
-var canvas = document.getElementById("layerTwo");
-var ctx = canvas.getContext("2d");
-var ballRadius = 10;
-var x = canvas.width/2;
-var y = canvas.height-30;
+
 
 
 
@@ -50,6 +51,11 @@ var xStart = randomInteger(100, 400)
 var yStart = randomInteger(800, 950)
 var xHole = randomInteger(50, 400)
 var yHole = randomInteger(50, 250)
+
+
+var xBall = xStart
+var yBall = yStart
+
 
 var xGreen = xHole - (randomInteger(15, 60));
 var yGreen = yHole - (randomInteger(15, 60));
@@ -67,8 +73,11 @@ var lowstinger = document.getElementById("lowstinger");
 var swing = document.getElementById("swing"); 
 
 
-var xGraph = xStart
-var yGraph = yStart
+
+// // DOM situation to update a variable?
+// var xBall = document.getElementById("xBall").value == "1"
+   
+// var yBall = document.getElementById("yBall").value == "1"
 
 
 var xDistance = xStart - xHole;
@@ -104,7 +113,7 @@ holeDistance.moveTo(xStart, yStart); // xStart,yStart <---- plug in the above
 holeDistance.lineTo(xHole, yHole); // xHole, yHole <--- plug in the above
 
 // this is the green hole location
-
+   
 shapes.rect(xGreen, yGreen, wGreen, hGreen); //can add border for rough edge, 15px maybe  <-- this is aesthetics
 shapes.fillStyle = "#7cfc00"; // this is the green box
 shapes.fill();
@@ -119,18 +128,31 @@ shapes.rect(xTee, yTee, 75, 30 );
 shapes.fillStyle = "#4ea12b"; // this is the tee box
 shapes.fill();
 
+
 shapes.beginPath();
 shapes.fillStyle = "white"; // this is the hole cup
 shapes.arc(xHole, yHole, 10, 0, 5 * Math.PI);
-shapes.fill();
-
-
-shapes.beginPath();
-shapes.arc(xStart, yStart, 2, 0, 2 * Math.PI);
-shapes.fillStyle = "black"; // this is the ball
-shapes.fill();
-shapes.strokeStyle = "white";
+shapes.lineWidth = 1;
+shapes.strokeStyle = 'black';
 shapes.stroke();
+shapes.fill();
+
+
+shapes.beginPath(); // <--- ball canvas 2
+shapes.arc(xBall, yBall, 5, 0, Math.PI*2); // <- fill xGraph, yGraph
+shapes.fillStyle = "red";
+shapes.fill();
+shapes.lineWidth = 1;
+shapes.strokeStyle = 'black';
+shapes.stroke();
+shapes.closePath();
+
+// shapes.beginPath();
+// shapes.arc(xStart, yStart, 2, 0, 2 * Math.PI);
+// shapes.fillStyle = "black"; // this is the ball
+// shapes.fill();
+// shapes.strokeStyle = "white";
+// shapes.stroke();
 
 shapes.beginPath();
 shapes.arc(leftPos, yStart, 2, 0, 2 * Math.PI);
@@ -142,25 +164,83 @@ shapes.arc(rightPos, yStart, 2, 0, 2 * Math.PI);
 shapes.fillStyle = "blue"; // this is the right pin
 shapes.fill();
 
+function drawStatic() {
+
+    shapes.rect(xGreen, yGreen, wGreen, hGreen); //can add border for rough edge, 15px maybe  <-- this is aesthetics
+    shapes.fillStyle = "#7cfc00"; // this is the green box
+    shapes.fill();
+
+    // for some reason this has to be here??? or else the boxes wont fill properly
+    shapes.beginPath();
+    shapes.fillStyle = "white"; // this is the hole cup
+    shapes.arc(xHole, yHole, 10, 0, 5 * Math.PI);
+    shapes.fill(); 
+
+    shapes.rect(xTee, yTee, 75, 30 );
+    shapes.fillStyle = "#4ea12b"; // this is the tee box
+    shapes.fill();
+
+
+    shapes.beginPath();
+    shapes.fillStyle = "white"; // this is the hole cup
+    shapes.arc(xHole, yHole, 10, 0, 5 * Math.PI);
+    shapes.lineWidth = 1;
+    shapes.strokeStyle = 'black';
+    shapes.stroke();
+    shapes.fill();
+
+
+    shapes.beginPath(); // <--- ball canvas 2
+    shapes.arc(xBall, yBall, 5, 0, Math.PI*2); // <- fill xGraph, yGraph
+    shapes.fillStyle = "red";
+    shapes.fill();
+    shapes.lineWidth = 1;
+    shapes.strokeStyle = 'black';
+    shapes.stroke();
+    shapes.closePath();
+
+    shapes.beginPath();
+    shapes.arc(leftPos, yStart, 2, 0, 2 * Math.PI);
+    shapes.fillStyle = "blue"; // this is the left pin
+    shapes.fill(); 
+
+    shapes.beginPath();
+    shapes.arc(rightPos, yStart, 2, 0, 2 * Math.PI);
+    shapes.fillStyle = "blue"; // this is the right pin
+    shapes.fill();
+}
+
+
 
 // ~~~~~second canvas~~~~~~~~
 
-// function drawBall() {
-    ctx.beginPath();
-    ctx.arc(250, 250, ballRadius, 0, Math.PI*2); // <- fill xGraph, yGraph
-    ctx.fillStyle = "#0095DD";
-    ctx.fill();
-    ctx.closePath();
-//   }
+// ctx.beginPath(); // <--- ball canvas 2
+// ctx.arc(xBall, yBall, 10, 0, Math.PI*2); // <- fill xGraph, yGraph
+// ctx.fillStyle = "#0095DD";
+// ctx.fill();
+// ctx.closePath();
+
+
+function drawBall() {
+    shapes.beginPath(); // <--- ball canvas 2
+    shapes.arc(xBall, yBall, 5, 0, Math.PI*2); // <- fill xGraph, yGraph
+    shapes.fillStyle = "red";
+    shapes.fill();
+    shapes.lineWidth = 1;
+    shapes.strokeStyle = 'black';
+    shapes.stroke();
+    shapes.closePath();
+     }
   
-//   function drawCup() {
-      ctx.beginPath();
-      ctx.arc(100, 100, 10, 0, 5 * Math.PI); // <--- fill xHole, yHole
-      ctx.fill();
-      ctx.fillStyle = "red";
-      ctx.fill();
-      ctx.closePath();
-//   }
+function drawCup() {
+    shapes.beginPath();
+    shapes.fillStyle = "white"; // this is the hole cup
+    shapes.arc(xHole, yHole, 10, 0, 5 * Math.PI);
+    shapes.lineWidth = 1;
+    shapes.strokeStyle = 'black';
+    shapes.stroke();
+    shapes.fill();
+   }
 // ~~~~~~~~ second canvas~~~~~~~~~~~~~
 
 
@@ -168,12 +248,42 @@ shapes.fill();
 
 // var playerSkill = .01 * swingPower * distanceToHole;
 
+
+function draw() {
+    drawStatic()
+    shapes.clearRect(0, 0, canvas.width, canvas.height);
+    if(yBall < yHole) {
+      yBall++
+    } else if (yBall > yHole) {
+      yBall--
+    }
+    if(xBall < xHole) {
+      xBall++
+    } else if (xBall > xHole) {
+      xBall--
+    }
+    if (xBall == xHole && yBall == yHole) {
+      clearInterval(ballMovement)
+    }
+    drawStatic();
+    drawCup();
+    drawBall();  
+}
+
+function ballMovement() {
+    setTimeout(function(){
+        var ballMovement = setInterval(draw, 5);
+    }, 800);
+}
+
+
+
 const holeInOne = () => {
     
-    if (swingPower < 95) { // if you change this to swingDistance < winning distance, it doesnt work
+    if (swingPower < 50) { // if you change this to swingDistance < winning distance, it doesnt work
         
         swing.play();
-        swing.volume = 0.8
+        swing.volume = 0.6
         gameStatus = false;
        
         console.log('you lose')
@@ -181,8 +291,9 @@ const holeInOne = () => {
         console.log("this is winning distance: " + winningDistance)
     } else {
         gameStatus = true;
-        lowstinger.volume = .8
+        lowstinger.volume = .6
         lowstinger.play();
+        ballMovement();
         ballwin();
  
         console.log('you win')
@@ -193,7 +304,7 @@ const holeInOne = () => {
  swingButton.addEventListener('click', (e) => {  
     var elem = document.getElementById("myBar");   
     var reverse = false;
-    var power = () => {
+    let power = () => {
         
         if (reverse == true) {
             swingPower--;
@@ -222,12 +333,14 @@ const holeInOne = () => {
         }
       
  })
+ 
+
 
 }
 // ~~~~~~~~~~~~~ this is the end of the dom content loader ~~~~~~~~~~~~~~~ //
 
 
-// document.addEventListener('click', () => {
-      
+// swingButton.addEventListener('click', () => {
+//       console.log(target)
 // })
 
