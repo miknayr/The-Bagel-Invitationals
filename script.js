@@ -28,6 +28,8 @@ function ballWin() { // celebration;
          clearInterval(ballMovement)
         }
 
+
+
 // ~~~~~~ most variables~~~~~~~~~~~
 var shouldStartTimer = true;
 var intervalId = null; 
@@ -51,8 +53,7 @@ var yHole = randomInteger(50, 250)
 var xBall = xStart
 var yBall = yStart
 
-let xIncrement = xHole / xBall
-let yIncrement = yHole / yBall
+
 
 var xGreen = xHole - (randomInteger(15, 60));
 var yGreen = yHole - (randomInteger(15, 60));
@@ -76,39 +77,99 @@ var swing = document.getElementById("swing");
    
 // var yBall = document.getElementById("yBall").value == "1"
 
+// this is start for slope index
+// math functions   //
+
 
 var xDistance = xStart - xHole;
 var yDistance = yStart - yHole;
+var playerDegree = 0-360 // chosen by arrow key incremenets of 10?
 
+const slopeIndex = (x, y) => {
+    return (y / x);
+}
+
+var winAngle = slopeIndex(xDistance, yDistance); // <--- this is the winning slope 
 
 
 const theBrendan = (x, y, x2, y2) => {
     return Math.round(Math.sqrt((x - x2) ** 2 + (y - y2) ** 2));
 }
 
-var distanceToHole = theBrendan(xStart, yStart, xHole, yHole);
+var distanceToHole = theBrendan(xStart, yStart, xHole, yHole); //<--- pythagorean theorem // this is the hypotenuse
+
+var playerAngle = Math.tan(playerDegree)
+
+// math functions end // 
+
+
+
+// const slopeIndex = (x, y) => {
+//     return (y / x);
+// }
+
+var winAngle = slopeIndex(xDistance, yDistance); // <--- this is the winning slope 
 
 var winningDistance = .9 * distanceToHole;
 
 var swingDistance = swingPower * distanceToHole * .01;
 
+// how to update variable based on visual button choosing,
+
+// player chooses club, either with buttons or number, that number goes into 
+// 
+// var playerSwing = swingPower * Object.values(club)[]
+
 
 var ySumBtH = Math.abs(xBall - xHole)
 var xSumBtH = Math.abs(yBall - yHole)
 
-var sumBtH = xSumBtH + ySumBtH
+// var sumBtH = xSumBtH + ySumBtH
+
+let xIncrement = xHole / xBall
+
+let yIncrement = yHole / yBall
 
 
 var hitDistance = null
 var numberOfStrokes = 0
 
-club = {
-    "Driver": 300,
-    "Fairway":  225,
-    "Iron":  150,
-    "Wedge": 75,
-    "Putter": 30
-};
+
+var clubSelection = 0
+
+document.getElementById('choice').addEventListener('click', loopArray); 
+
+function loopArray() {
+    club = {
+        "Driver": 300,
+        "Fairway":  225,
+        "Iron":  150,
+        "Wedge": 75,
+        "Putter": 30
+    };
+    document.querySelector('#clubSelection').innerText = "Club: " + Object.keys(club)[clubSelection];
+    clubSelection++
+    if (clubSelection == 5){
+        clubSelection = 0;
+    }
+    
+
+    // for (let key in club) {
+    //     console.log(key)
+    //     i++
+    //     if (i == 5){
+    //         i = 0
+    //     }
+    // } 
+
+    // for (let i = 0; i < Object.keys(club).length; i++) {
+    //     console.log(Object.keys(club)[i])
+    //     // document.querySelector('#output').innerText = Object.keys(club)[i];
+
+        
+    // };
+}
+
 
 
 
@@ -121,7 +182,9 @@ console.log("Your Swing Distance inside power is : " + swingDistance)
 console.log("this is the numeric value of xDistance: " + Math.abs(xDistance))
 console.log("this is the numeric value of yDistance: " + Math.abs(yDistance))
 console.log("this is the distance to hole: " + distanceToHole);
+
 console.log("this is winning distance: " + winningDistance)
+console.log("line 91 slope index / win angle : " + winAngle)
 
 
 holeDistance.beginPath(0,0); // <--- not sure what this does.
@@ -231,9 +294,11 @@ function drawStatic() {
 
 document.getElementById("menuDist").innerText=`Distance to Hole: ${distanceToHole}`;
 document.getElementById("stroke").innerText=`Stroke: ${numberOfStrokes}`;
-document.getElementById("clubChoice").innerText= "Club: " + Object.keys(club)[0];
+// document.getElementById("clubChoice").innerText= "Club: " + Object.keys(club)[0];
 
 // ~~~~~second canvas~~~~~~~~
+
+
 
 
 function drawBall() {
@@ -296,6 +361,12 @@ function ballLoop() {
 }
 
 
+
+function playerHit() {
+    var swingDistance
+}
+
+
 // function ballMovement() {
 //     setTimeout(function(){
 //         var ballMovement = setInterval(draw, 6);
@@ -338,7 +409,7 @@ const holeInOne = () => {
         document.getElementById("stroke").innerText=`Stroke: ${numberOfStrokes}`;
         console.log("this is where number of strokes, swing button: " + numberOfStrokes)
 
-        console.log('you lose')
+        // console.log('you lose')
         // console.log("Your swing Distance less than 50 is: " + swingDistance)
         // console.log("Your swing swingPower more than 50 is: " + swingPower)
         // console.log("this is winning distance: " + winningDistance)
@@ -351,7 +422,7 @@ const holeInOne = () => {
         numberOfStrokes++
         document.getElementById("stroke").innerText=`Stroke: ${numberOfStrokes}`;
         console.log("this is where number of strokes, swing button: " + numberOfStrokes)
-        console.log('you win')
+        // console.log('you win')
         // console.log("Your swing Distance more than 50 is: " + swingDistance)
         // console.log("Your swing swingPower more than 50 is: " + swingPower)
      }
@@ -391,6 +462,9 @@ const holeInOne = () => {
     })
     
     
+
+   
+
     //  console.log('x start y start: ' + xStart + " | "+ yStart)
     //  console.log('x hole y hole: ' + xHole + " | "+ yHole)
     //  console.log("Your Swing Distance inside power is : " + swingDistance)

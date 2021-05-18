@@ -319,3 +319,48 @@ interval is Math.round(sumBtH * swingPower * 0.01);
 
 
 maybe change club automatically based on distance to hole with if statements.
+
+
+
+club value * swing power * .01 = hitDistance
+300 * 100 * 0.01 = 300
+
+ball start (xball,yBall) 
+xincrement 
+
+number of times this repeats = hitDistance
+
+xincremenet += xBall coordinate
+
+angle of hit distance 
+
+(360,888). y=mx+b or 888=3 × 360+b, or solving for b: b=888-(3)(360). b=-192.
+y = mx + b
+888=(3×360)+b,
+B = -192
+yBall = slopeIndex * xBall + bBall
+
+
+what am i trying to find:
+im trying to find the increment
+
+end coordinate?
+
+if ball goes out of canvas, reset to , + 1 stroke.
+angle of ball = player chooses arrow keys over 360 degrees
+
+
+
+for hitDistance number {
+playerAngle + xBall += xBall 
+playerangle +  yBall += yBall 
+}
+
+
+
+
+pythagorean is needed to know how far away the hole is  (distance to hole)
+And then y = mx + b is to get the ball towards the hole but based on the angle the player chooses (new ball coordinates)
+
+
+click button choose an array 
