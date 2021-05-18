@@ -35,7 +35,14 @@
 #menu {
  
   width: 200px;
-  height: 200px;
+  height: 230px;
+  border: 5px solid black;
+  
+}
+#menu2 {
+ 
+  width: 200px;
+  height: 230px;
   border: 5px solid black;
 }
 
@@ -43,4 +50,13 @@
   width: auto;
   height: 50px;
   border: 5px solid black;
+}
+
+
+#meme {
+ 
+  width: 250px;
+  height: 230px;
+  border: 5px solid black;
+  
 }
