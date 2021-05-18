@@ -227,10 +227,10 @@ we are
 xBall-- || yBall--
 
 ((xBall + 20) > (xHole) && (xBall - 5) < (xHole + 15) || && || (yBall - 10) > (yHole) && (yBall - 5) < (yHole + 15))
-((xHole + 20) > (xBall) && (xHole - 5) < (xBall + 15) && (yHole - 10) > (yBall) && (yHole - 5) < (yBall + 15))
-367  > 154 && 342 < 209               || && ||  933 > 223 && 938 < 209
+
+
 174 > 154   && 139 < 169                             || && ||          213 > 223   &&   218 < 238  <-- after adjustments>
-154 + 20  > 347 && 154 - 5 < 347 + 15 || && || 223 - 10 > 943 && 223 - 5 < 943 + 15
+
 
 
 
@@ -250,3 +250,55 @@ https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rotate
 
 Object.keys(club)[0] = will return the name
 Object.values(club)[0] = will return the "value" of the club ( the distance)
+
+
+
+need to disable the swing button after being clicked twice.
+
+
+swing distance = swing power * club selection  * .01 = this updates to max club distance
+
+
+
+so you take the hypotenuse, square it, divide that number by 2, get the square root of that number, 
+when you swing, that swing distance # updates your pythagorean theorem???
+ball location --> new ball location
+
+
+new ball location updates ball location
+
+
+
+collision detection : win condition.
+if ball comes into contact with hole, you win
+if ((xBall + 20) > (xHole) && (xBall - 5) < (xHole + 15) && (yBall - 10) > (yHole) && (yBall - 5) < (yHole + 15)) {
+        clearInterval(ballMovement);
+        console.log("ball is cleared");
+    }
+
+
+
+interval set instead of let, do a while loop
+roundswingdistance = math.round(swingPower * distanceToHole * 0.01)
+
+need to adjust ball movement function ( draw function ) 
+loop this function x amount of times based on the swing index which is determined by swing power * distance to hole * .01
+for i = 0; i < wholeSwingDistance; i++ {
+    
+}
+
+var ySumBtH = Math.abs(xBall - xHole)
+var xSumBtH = Math.abs(yBall - yHole)
+
+
+var sumBtH = xSumBtH + ySumBtH
+distance to hole = su
+
+this is the distance to hole: 855
+this is the numeric interval ball to hole: 1013
+
+how do you get distance to hole = to sumBth
+795
+sumBtH * swingPower * 0.01
+
+interval is Math.round(sumBtH * swingPower * 0.01);
