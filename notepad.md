@@ -243,3 +243,10 @@ http://zonalandeducation.com/mmts/functionInstitute/linearFunctions/new/lsif0.ph
 
 choosing club, max hitting distance 
 angle affects distance
+https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rotate <--- integrate this into ball>
+
+
+
+
+Object.keys(club)[0] = will return the name
+Object.values(club)[0] = will return the "value" of the club ( the distance)

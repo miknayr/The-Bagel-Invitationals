@@ -66,3 +66,10 @@
 
 5/17 940pm update;
 - swing power is now readable. game is in a technically skill based scenario. can submit this version
+
+
+5/17 1030pm update; 
+- added some UI stuff, added some inputs for identifying the number of stroke and which club, with the max distance of the club
+-goals for tomorrow; 
+- try to add degree choice, (3 choices striaght left or right check notepad for website) and ball independant from the draw ball function, 
+-rebuild the draw function? it should be ball placement and the distance it moves is based on club selection max distance * swing power (revamp swingdistance)

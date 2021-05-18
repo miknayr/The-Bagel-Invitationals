@@ -92,6 +92,16 @@ var swingDistance = swingPower * distanceToHole * .01;
 
 var hitDistance = null
 var winningDistance = .9 * distanceToHole;
+var numberOfStrokes = 0
+
+club = {
+    "Driver": 300,
+    "Fairway":  225,
+    "Iron":  150,
+    "Wedge": 75,
+    "Putter": 30
+};
+
 
 
 // ~~~~~~~~ end of variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -249,17 +259,17 @@ function draw() {
     shapes.clearRect(0, 0, layerOne.width, layerOne.height);
     if(yBall < yHole) {
       yBall++
-      console.log('this is yball ++: ' + yBall)
+    //   console.log('this is yball ++: ' + yBall)
     } else if (yBall > yHole) {
       yBall--
-      console.log('this is yball -- : ' + yBall)
+    //   console.log('this is yball -- : ' + yBall)
     }
     if(xBall < xHole) {
       xBall++
     } else if (xBall > xHole) {
       xBall--
 
-      
+
     } if ((xBall + 20) > (xHole) && (xBall - 5) < (xHole + 15) && (yBall - 10) > (yHole) && (yBall - 5) < (yHole + 15)) {
         clearInterval(ballMovement);
         console.log("ball is cleared");
@@ -277,11 +287,11 @@ const holeInOne = () => {
     var swingDistance = swingPower * distanceToHole * .01;
     if (swingDistance < winningDistance) { // if you change this to swingDistance < winning distance, it doesnt work
         swing.play();
-        swing.volume = 0.6
+        swing.volume = 0.4
         gameStatus = false;
        
         console.log('you lose')
-        console.log("Your swing Distance less than 50 is: " + singDistance)
+        console.log("Your swing Distance less than 50 is: " + swingDistance)
         console.log("Your swing swingPower more than 50 is: " + swingPower)
         // console.log("this is winning distance: " + winningDistance)
     } else {
@@ -315,11 +325,9 @@ const holeInOne = () => {
             if (swingPower > 99) {
                 reverse = true
             }
-        }
-        
+        }        
         }
         if (shouldStartTimer) {
-            
             intervalId = setInterval(power, 10);
             shouldStartTimer = false;
         } else {
@@ -339,7 +347,10 @@ const holeInOne = () => {
     //  console.log("this is the distance to hole: " + distanceToHole);
     //  console.log("this is winning distance: " + winningDistance)
 
-document.getElementById("menuDist").innerText=`Distance to Hole: ${distanceToHole}`
+document.getElementById("menuDist").innerText=`Distance to Hole: ${distanceToHole}`;
+document.getElementById("stroke").innerText=`Stroke: ${numberOfStrokes}`;
+document.getElementById("clubChoice").innerText= "Club: " + Object.keys(club)[0];
+
  
 
 }
