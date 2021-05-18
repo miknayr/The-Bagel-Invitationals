@@ -280,7 +280,7 @@ function ballLoop() {
     } else if (xBall > xHole) {
       xBall--
      
-    } if ((xBall + 20) > (xHole) && (xBall - 5) < (xHole + 10) && (yBall - 20) > (yHole) && (yBall - 5) < (yHole + 20)) {
+    } if ((xBall + 5) > (xHole) && (xBall - 10) < (xHole + 5) && (yBall + 5) > (yHole) && (yBall - 10) < (yHole-5)) {
         // this magnetizes the ball to go into the hole if youre close ? not sure how close"
         xBall = xHole;
         yBall = yHole

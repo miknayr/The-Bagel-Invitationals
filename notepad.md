@@ -218,18 +218,32 @@ can you set the interval? and that selects the
 
 distance = set increment? to adjust the incremenet to basically move the ball??
 
-
-
-x ball y ball: 347 | 943
-x hole y hole: 154 | 223
+if x/y is greater > , --
+if x/y is less than > , ++
+x start y start: 234 | 924
+x hole y hole: 309 | 52
 
 we are 
-xBall-- || yBall--
+xBall++ || yBall--
 
-((xBall + 20) > (xHole) && (xBall - 5) < (xHole + 15) || && || (yBall - 10) > (yHole) && (yBall - 5) < (yHole + 15))
+((xBall + 5) > (xHole) && (xBall - 10) < (xHole + 5) || && || (yBall + 5) > (yHole) && (yBall - 10) < (yHole-5))
 
+leftside
+if x ball + 5 is greater than x hole 
+&and& 
+rightside
+x ball - 10 is less than xHole + 5 
 
-174 > 154   && 139 < 169                             || && ||          213 > 223   &&   218 < 238  <-- after adjustments>
+&&
+top
+if yball + 5  > y Hole  
+&and&
+bottom 
+yball - 5 greater than yHole + 15
+
+314 > 309 && 299 < 309
+
+57 > 52 && 57 > 52
 
 
 
@@ -302,3 +316,6 @@ how do you get distance to hole = to sumBth
 sumBtH * swingPower * 0.01
 
 interval is Math.round(sumBtH * swingPower * 0.01);
+
+
+maybe change club automatically based on distance to hole with if statements.

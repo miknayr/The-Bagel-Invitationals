@@ -73,3 +73,12 @@
 -goals for tomorrow; 
 - try to add degree choice, (3 choices striaght left or right check notepad for website) and ball independant from the draw ball function, 
 -rebuild the draw function? it should be ball placement and the distance it moves is based on club selection max distance * swing power (revamp swingdistance)
+
+
+5/18 12pm update; 
+- ball distance is now existing
+- stroke count is being counted and if ball is within "collision" of the hole (around 95% power) it'll become a hole in one, otherwise, you need two strokes.
+- otherwise, this version is stable.
+
+
+- still have to figure out how to reset power bar to adjust power ...
