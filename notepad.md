@@ -192,3 +192,37 @@ clean up the buttons situation. swing, new hole ( add celebration button after y
 
 
 
+
+
+math is 
+set the  value of the hole
+set the value of the ball
+
+dont update eveyrtime
+
+x of the hole / x of the ball = +/- every loop
+y of the hole / y of the ball = +/- every loop  
+
+
+let xIncrement = xBall / xHole
+let yIncrement = yBall / yHole
+
+
+
+can you set the interval? and that selects the 
+
+distance = set increment? to adjust the incremenet to basically move the ball??
+
+
+
+x ball y ball: 347 | 943
+x hole y hole: 154 | 223
+
+we are 
+xBall-- || yBall--
+
+((xBall + 20) > (xHole) && (xBall - 5) < (xHole + 15) || && || (yBall - 10) > (yHole) && (yBall - 5) < (yHole + 15))
+((xHole + 20) > (xBall) && (xHole - 5) < (xBall + 15) && (yHole - 10) > (yBall) && (yHole - 5) < (yBall + 15))
+367  > 154 && 342 < 209               || && ||  933 > 223 && 938 < 209
+174 > 154   && 139 < 169                             || && ||          213 > 223   &&   218 < 238  <-- after adjustments>
+154 + 20  > 347 && 154 - 5 < 347 + 15 || && || 223 - 10 > 943 && 223 - 5 < 943 + 15

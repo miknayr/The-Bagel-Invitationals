@@ -55,3 +55,8 @@
 - added background colors for bootstrap
 - moved gif to "screen"
 - need to work on creating variable swingdistance? maybe put them in menu to have an identity to work off of
+
+
+5/17 9pm update;
+- figure out how to stop the infinite loop, 
+- now need to figure out how to split the swing into individual power, whether by interval or something else

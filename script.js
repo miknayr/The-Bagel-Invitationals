@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded',domloaded,true);
 function domloaded(){
     // your code here.
@@ -9,12 +8,12 @@ const swingButton = document.querySelector('input[type="reset"]')
 const reset = document.querySelector('reset[class="button"]')
 
 function randomInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.trunc(Math.random() * (max - min + 1)) + min;
   }
 
     
   function tiger() {
-    document.getElementById("z").src="./images/tigerlong2.gif"
+    document.getElementById("z").src="./images/tiger.gif"
 }
 
 
@@ -28,14 +27,15 @@ function randomInteger(min, max) {
 
 function ballWin() { // celebration;
         setTimeout(function() {
-            // hype.volume = 0.4
-            // hype.play();
+            hype.volume = 0.4
+            hype.play();
             tiger();
         }, 4200);
         setTimeout(function() {
             document.getElementById("z").src=" "  
          }, 4000);
-}
+         clearInterval(ballMovement)
+        }
 
 // ~~~~~~ most variables~~~~~~~~~~~
 var shouldStartTimer = true;
@@ -256,17 +256,17 @@ function draw() {
     shapes.clearRect(0, 0, layerOne.width, layerOne.height);
     if(yBall < yHole) {
       yBall++
+      console.log('this is yball: ' + yBall)
     } else if (yBall > yHole) {
       yBall--
+      console.log('this is yball: ' + yBall)
     }
     if(xBall < xHole) {
       xBall++
     } else if (xBall > xHole) {
       xBall--
     }
-    if (xBall == xHole && yBall == yHole) {
-      clearInterval(ballMovement)
-    }
+    clearInterval(ballMovement);
     drawStatic();
     drawCup();
     drawBall();  
@@ -274,7 +274,7 @@ function draw() {
 
 function ballMovement() {
     setTimeout(function(){
-        var ballMovement = setInterval(draw, 5);
+        var ballMovement = setInterval(draw, 10);
     }, 800); // <--- adjust this number for ball movement delay
 }
 
@@ -283,7 +283,6 @@ function ballMovement() {
 const holeInOne = () => {
     
     if (swingPower < 50) { // if you change this to swingDistance < winning distance, it doesnt work
-        
         swing.play();
         swing.volume = 0.6
         gameStatus = false;
@@ -298,8 +297,11 @@ const holeInOne = () => {
         ballMovement();
         ballWin();
         console.log('you win')
-        
      }
+     if (xBall == xHole && yBall == yHole) {
+        clearInterval(ballMovement);
+        console.log("ball is cleared");
+    }
 }
 
 
@@ -356,4 +358,3 @@ document.getElementById("menuDist").innerText=`Distance to Hole: ${distanceToHol
 // swingButton.addEventListener('click', () => {
 //       console.log(target)
 // })
-
