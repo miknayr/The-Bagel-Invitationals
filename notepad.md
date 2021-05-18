@@ -200,13 +200,18 @@ set the value of the ball
 
 dont update eveyrtime
 
-x of the hole / x of the ball = +/- every loop
-y of the hole / y of the ball = +/- every loop  
-
 
 let xIncrement = xBall / xHole
 let yIncrement = yBall / yHole
 
+var x = 10;
+var interval = 1000;
+
+for (var i = 0; i < x; i++) {
+    setTimeout(function () {
+        // Do Something
+    }, i * interval)
+}
 
 
 can you set the interval? and that selects the 
@@ -226,3 +231,15 @@ xBall-- || yBall--
 367  > 154 && 342 < 209               || && ||  933 > 223 && 938 < 209
 174 > 154   && 139 < 169                             || && ||          213 > 223   &&   218 < 238  <-- after adjustments>
 154 + 20  > 347 && 154 - 5 < 347 + 15 || && || 223 - 10 > 943 && 223 - 5 < 943 + 15
+
+
+
+
+y=mx+b
+http://zonalandeducation.com/mmts/functionInstitute/linearFunctions/new/lsif0.php#:~:text=The%20formula%20y%20%3D%20mx%20%2B%20b,(x%2C%20y)%20plane.&text=When%20the%20function%20for%20a,'slope%2Dintercept%20form'.
+
+
+
+
+choosing club, max hitting distance 
+angle affects distance

@@ -16,15 +16,6 @@ function randomInteger(min, max) {
     document.getElementById("z").src="./images/tiger.gif"
 }
 
-
-
-
-
-// function clear() {
-//     document.getElementById("z").src="" 
-// }
-    
-
 function ballWin() { // celebration;
         setTimeout(function() {
             hype.volume = 0.4
@@ -246,65 +237,65 @@ function drawCup() {
 // ~~~~~~~~ second canvas~~~~~~~~~~~~~
 
 
-// this is the end of the tee box location
 
-// var playerSkill = .01 * swingPower * distanceToHole;
-
+function ballMovement() {
+    setTimeout(function(){
+        var ballMovement = setInterval(draw, 6);
+    }, 800); // <--- adjust this number for ball movement delay
+}
 
 function draw() {
     drawStatic()
     shapes.clearRect(0, 0, layerOne.width, layerOne.height);
     if(yBall < yHole) {
       yBall++
-      console.log('this is yball: ' + yBall)
+      console.log('this is yball ++: ' + yBall)
     } else if (yBall > yHole) {
       yBall--
-      console.log('this is yball: ' + yBall)
+      console.log('this is yball -- : ' + yBall)
     }
     if(xBall < xHole) {
       xBall++
     } else if (xBall > xHole) {
       xBall--
+
+      
+    } if ((xBall + 20) > (xHole) && (xBall - 5) < (xHole + 15) && (yBall - 10) > (yHole) && (yBall - 5) < (yHole + 15)) {
+        clearInterval(ballMovement);
+        console.log("ball is cleared");
     }
-    clearInterval(ballMovement);
+    
     drawStatic();
     drawCup();
     drawBall();  
-}
-
-function ballMovement() {
-    setTimeout(function(){
-        var ballMovement = setInterval(draw, 10);
-    }, 800); // <--- adjust this number for ball movement delay
 }
 
 
 
 const holeInOne = () => {
     
-    if (swingPower < 50) { // if you change this to swingDistance < winning distance, it doesnt work
+    var swingDistance = swingPower * distanceToHole * .01;
+    if (swingDistance < winningDistance) { // if you change this to swingDistance < winning distance, it doesnt work
         swing.play();
         swing.volume = 0.6
         gameStatus = false;
        
         console.log('you lose')
-        // console.log("Your swing Distance is: " + swingDistance)
+        console.log("Your swing Distance less than 50 is: " + singDistance)
+        console.log("Your swing swingPower more than 50 is: " + swingPower)
         // console.log("this is winning distance: " + winningDistance)
     } else {
         gameStatus = true;
-        lowstinger.volume = .6
-        lowstinger.play();
+        // lowstinger.volume = .6
+        // lowstinger.play();
         ballMovement();
-        ballWin();
+        // ballWin();
         console.log('you win')
+        console.log("Your swing Distance more than 50 is: " + swingDistance)
+        console.log("Your swing swingPower more than 50 is: " + swingPower)
      }
-     if (xBall == xHole && yBall == yHole) {
-        clearInterval(ballMovement);
-        console.log("ball is cleared");
-    }
+    
 }
-
-
  swingButton.addEventListener('click', (e) => {  
     var elem = document.getElementById("myBar");   
     var reverse = false;
@@ -325,9 +316,10 @@ const holeInOne = () => {
                 reverse = true
             }
         }
-        window.swingDistance = swingDistance; 
+        
         }
         if (shouldStartTimer) {
+            
             intervalId = setInterval(power, 10);
             shouldStartTimer = false;
         } else {
@@ -336,16 +328,16 @@ const holeInOne = () => {
             holeInOne()
         }
       
-        
-         console.log('x start y start: ' + xStart + " | "+ yStart)
-         console.log('x hole y hole: ' + xHole + " | "+ yHole)
-         console.log("Your Swing Distance inside power is : " + swingDistance)
-         console.log("this is the numeric value of xDistance: " + Math.abs(xDistance))
-         console.log("this is the numeric value of yDistance: " + Math.abs(yDistance))
-         console.log("this is the distance to hole: " + distanceToHole);
-         console.log("this is winning distance: " + winningDistance)
- })
- 
+    })
+    
+    
+    //  console.log('x start y start: ' + xStart + " | "+ yStart)
+    //  console.log('x hole y hole: ' + xHole + " | "+ yHole)
+    //  console.log("Your Swing Distance inside power is : " + swingDistance)
+    //  console.log("this is the numeric value of xDistance: " + Math.abs(xDistance))
+    //  console.log("this is the numeric value of yDistance: " + Math.abs(yDistance))
+    //  console.log("this is the distance to hole: " + distanceToHole);
+    //  console.log("this is winning distance: " + winningDistance)
 
 document.getElementById("menuDist").innerText=`Distance to Hole: ${distanceToHole}`
  

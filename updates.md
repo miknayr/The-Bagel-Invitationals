@@ -60,3 +60,9 @@
 5/17 9pm update;
 - figure out how to stop the infinite loop, 
 - now need to figure out how to split the swing into individual power, whether by interval or something else
+
+
+
+
+5/17 940pm update;
+- swing power is now readable. game is in a technically skill based scenario. can submit this version
