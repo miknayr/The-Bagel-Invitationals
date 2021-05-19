@@ -265,7 +265,7 @@ https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rotate
 Object.keys(club)[0] = will return the name
 Object.values(club)[0] = will return the "value" of the club ( the distance)
 
-
+175 formula
 
 need to disable the swing button after being clicked twice.
 
@@ -361,4 +361,41 @@ angle +  yBall += yBall
 
 pythagorean is needed to know how far away the hole is  (distance to hole)
 And then y = mx + b is to get the ball towards the hole but based on the angle the player chooses (new ball coordinates)
+
+
+
+
+the draw ball needs to show final point
+var xCurrentMax = Math.sin(angle) * Object.values(club)[clubSelection] + xBall
+var yCurrentMax = Math.cos(angle) * Object.value(club)[clubSelection] + yBall
+
+
+
+
+
+slopeangle is what you add to your xBall  // yBall
+
+player angle is what you add 
+
+power is the interval at how many times it runs.
+
+xCurrentMax, yCurrentMax are coordinates!
+
+xBallCoord = 
+
+xSlope y Slope
+y = mx + b for 
+
+
+https://codehandbook.org/understanding-settimeout-inside-for-loop-in-javascript/#:~:text=The%20setTimeout%20function%20callback%20isn,in%20all%20the%20setTimeout%20callbacks.
+// setTimeout inside for loop with IIFE wrapper
+
+for(var i = 0; i < 5; i++){
+    (function(i){
+        setTimeout(function(){
+            console.log('value is ', i);
+        }, 3000 * (i + 1));
+    })(i);
+}
+
 

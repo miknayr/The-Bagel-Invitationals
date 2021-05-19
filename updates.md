@@ -97,3 +97,11 @@ this should give ball into free form. if ball goes out of html canvas, reset int
 5/18 8pm update;
 - added keyboard stroke ! left and right to set angle used
 
+
+
+
+
+5/19 12am update;
+
+need to figure out why Object.value ( line 198 ) goes to undefined after looping
+started new player ball movement function/formula

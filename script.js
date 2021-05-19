@@ -40,9 +40,6 @@ var holeDistance = teeToGreen.getContext('2d');
 var shapes = teeToGreen.getContext('2d');
 
 
-
-
-
 // coordinates for the hole
 var xStart = randomInteger(100, 400)
 var yStart = randomInteger(800, 950)
@@ -59,7 +56,6 @@ var xGreen = xHole - (randomInteger(15, 60));
 var yGreen = yHole - (randomInteger(15, 60));
 var wGreen = randomInteger(75, 120);
 var hGreen = randomInteger(75, 120);
-//tee marker, visuals
 var xTee = xStart - 40
 var yTee = yStart - 15
 var leftPos = xStart - 20
@@ -83,21 +79,7 @@ function keyDownHandler(e) {
         rightPressed = true;
         angle += 10
         console.log("right key pressed and  " + angle)
-        
-        bagelBall.style.transform = `rotate(${angle}deg)`;
-        if (angle == 0) {
-            angle = 360;
-        } else if (angle == -10) {
-            angle = 350;
-        } else if (angle == -20) {
-            angle = 340
-        }
-    }
-    else if(e.key == "Left" || e.key == "ArrowLeft") {
-        leftPressed = true;
-        angle -= 10
-        console.log("left key pressed and  " + angle)
-       
+        console.log(xCurrentMax)
         bagelBall.style.transform = `rotate(${angle}deg)`;
         if (angle == 350) {
             angle = -10;
@@ -106,7 +88,21 @@ function keyDownHandler(e) {
         } else if (angle == 370) {
             angle = 10
         }
-      
+    }
+    else if(e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = true;
+        angle -= 10
+        console.log("left key pressed and  " + angle)
+        console.log(xCurrentMax)
+        bagelBall.style.transform = `rotate(${angle}deg)`;
+
+        if (angle == 0) {
+            angle = 360;
+        } else if (angle == -10) {
+            angle = 350;
+        } else if (angle == -20) {
+            angle = 340
+        }
     }
 }
 
@@ -120,21 +116,24 @@ function keyUpHandler(e) {
     }
 }
 
-
-
-
-
-// // DOM situation to update a variable?
-// var xBall = document.getElementById("xBall").value == "1"
-   
-// var yBall = document.getElementById("yBall").value == "1"
-
-// this is start for slope index
 // math functions   //
 
+var numberOfStrokes = 0
+
+club = {
+    "Driver": 300,
+    "Fairway":  225,
+    "Iron":  150,
+    "Wedge": 75,
+    "Putter": 30
+}
+var clubSelection = 0
+
+
+var playerSwingDistance = swingPower * Object.values(club)[clubSelection] * 0.01
 
 var angle = 90
-
+var xCurrentMax = Math.sin(Math.abs(angle)) * Object.values(club)[clubSelection] + xBall
 var xDistance = xStart - xHole;
 var yDistance = yStart - yHole;
 
@@ -143,7 +142,6 @@ const slopeIndex = (x, y) => {
     return (y / x);
 }
 
-var winAngle = slopeIndex(xDistance, yDistance); // <--- this is the winning slope 
 
 
 const theBrendan = (x, y, x2, y2) => {
@@ -162,37 +160,40 @@ var playerAngle = Math.tan(angle);
 //     return (y / x);
 // }
 
-var winAngle = slopeIndex(xDistance, yDistance); // <--- this is the winning slope 
+var slopeAngle = slopeIndex(xDistance, yDistance); // <--- this is the winning slope 
 
 var winningDistance = .9 * distanceToHole;
 
 var swingDistance = swingPower * distanceToHole * .01;
-
-// how to update variable based on visual button choosing,
-
-// player chooses club, either with buttons or number, that number goes into 
-// 
-// var playerSwing = swingPower * Object.values(club)[]
-
 
 var ySumBtH = Math.abs(xBall - xHole)
 var xSumBtH = Math.abs(yBall - yHole)
 
 // var sumBtH = xSumBtH + ySumBtH
 
-let xIncrement = xHole / xBall
+// let xIncrement = xHole / xBall
 
-let yIncrement = yHole / yBall
+// let yIncrement = yHole / yBall
 
 
 var hitDistance = null
 var numberOfStrokes = 0
 
+club = {
+    "Driver": 300,
+    "Fairway":  225,
+    "Iron":  150,
+    "Wedge": 75,
+    "Putter": 30
+}
 
-var clubSelection = 0
+var playerSwingDistance = swingPower * Object.values(club)[clubSelection] * 0.01
 
-document.getElementById('choice').addEventListener('click', clubplus); 
+
+
+document.getElementById('choice1').addEventListener('click', clubplus); 
 document.getElementById('choice2').addEventListener('click', clubminus); 
+var clubSelection = 0
 
 function clubplus() {
     club = {
@@ -203,11 +204,14 @@ function clubplus() {
         "Putter": 30
     };
     document.querySelector('#clubSelection').innerText = "Club: " + Object.keys(club)[clubSelection];
-    clubSelection++
+    
     if (clubSelection == 5){
         clubSelection = 0;
     }
+    clubSelection++
+    console.log("the current club distance is : " + Object.keys(club)[clubSelection])
 }
+
 function clubminus() {
     club = {
         "Driver": 300,
@@ -217,18 +221,27 @@ function clubminus() {
         "Putter": 30
     };
     document.querySelector('#clubSelection').innerText = "Club: " + Object.keys(club)[clubSelection];
+    
     if (clubSelection == 0){
         clubSelection = 5;
     }
     clubSelection--
-    
 
+    
 }
 
 
 
 
-// ~~~~~~~~ end of variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// // ~~~~~~~~ end of variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+var xCurrentMax = Math.sin(angle) * Object.values(club)[clubSelection] + xBall // <--- coordinates!
+var yCurrentMax = Math.cos(angle) * Object.values(club)[clubSelection] + yBall // <--- coordinates!
+
+
+var xSlope = xCurrentMax - xBall;
+var ySlope = yCurrentMax - yBall;
+
 
 console.log('x start y start: ' + xStart + " | "+ yStart)
 console.log('x hole y hole: ' + xHole + " | "+ yHole)
@@ -236,9 +249,9 @@ console.log("Your Swing Distance inside power is : " + swingDistance)
 console.log("this is the numeric value of xDistance: " + Math.abs(xDistance))
 console.log("this is the numeric value of yDistance: " + Math.abs(yDistance))
 console.log("this is the distance to hole: " + distanceToHole);
-
+console.log("this is the current Max for distance" + xCurrentMax + " & " + yCurrentMax)
 console.log("this is winning distance: " + winningDistance)
-console.log("line 91 slope index / win angle : " + winAngle)
+console.log("line 91 slope index / win angle : " + slopeAngle)
 
 
 
@@ -378,6 +391,46 @@ function drawCup() {
    }
 // ~~~~~~~~ second canvas~~~~~~~~~~~~~
 
+function animeBall() {
+    
+       drawBall();  
+}
+
+
+
+
+function playerBall() {
+   
+    var playerSwingDistance = swingPower * Object.values(club)[clubSelection] * .01
+    var playerAngle = Math.tan(angle);
+
+    drawStatic()
+    for (let i = 0; i <= playerSwingDistance; i++) {
+        shapes.clearRect(0, 0, layerOne.width, layerOne.height);
+        animeBall(); // <-- check line 386 to implement delay
+        if (xBall < xCurrentMax) {
+            xBall -= xSlope
+            console.log("updated xBall location" + xBall)
+        } else if (xBall > xCurrentMax) {
+            xBall += xSlope
+        }
+        if (yBall < yCurrentMax) {
+            yBall -= ySlope
+        } else if (yBall > yCurrentMax) {
+            yBall += ySlope
+        }if ((xBall + 10) > (xHole) && (xBall - 10) < (xHole + 5) && (yBall + 10) > (yHole) && (yBall - 10) < (yHole + 5)) {
+            xBall = xHole;
+            yBall = yHole
+            console.log("ball is cleared");
+            playerSwingDistance = i
+        }
+    }
+        
+
+
+    
+}
+
 function ballLoop() {
 
     // var sumBtH = xSumBtH + ySumBtH
@@ -388,17 +441,17 @@ function ballLoop() {
         drawStatic()
     shapes.clearRect(0, 0, layerOne.width, layerOne.height);
     if(yBall < yHole) {
-      yBall++
+        yBall = yBall + slopeAngle
      
     } else if (yBall > yHole) {
-      yBall--
+      yBall = yBall - slopeAngle
       
     }
     if(xBall < xHole) {
-      xBall++
+      xBall = xBall + slopeAngle
       
     } else if (xBall > xHole) {
-      xBall--
+      xBall= xBall - slopeAngle
      
     } if ((xBall + 10) > (xHole) && (xBall - 10) < (xHole + 5) && (yBall + 10) > (yHole) && (yBall - 10) < (yHole + 5)) {
         // this magnetizes the ball to go into the hole if youre close ? not sure how close"
@@ -416,10 +469,6 @@ function ballLoop() {
 }
 
 
-
-function playerHit() {
-    var swingDistance
-}
 
 
 // function ballMovement() {
@@ -521,7 +570,7 @@ const holeInOne = () => {
     
     
 
-   
+   console.log("the current club distance is : " + Object.values(club)[clubSelection])
 
     //  console.log('x start y start: ' + xStart + " | "+ yStart)
     //  console.log('x hole y hole: ' + xHole + " | "+ yHole)
