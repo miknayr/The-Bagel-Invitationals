@@ -73,29 +73,40 @@ var swing = document.getElementById("swing");
 var rightPressed = false;
 var leftPressed = false;
 var bagelBall = document.getElementById('bagel')
-var angle = 0
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
 function keyDownHandler(e) {
+    
     if(e.key == "Right" || e.key == "ArrowRight") {
         rightPressed = true;
         angle += 10
-        console.log("right key pressed and  +" + angle)
+        console.log("right key pressed and  " + angle)
+        
         bagelBall.style.transform = `rotate(${angle}deg)`;
-        if (angle == 360) {
-            angle = 0;
+        if (angle == 0) {
+            angle = 360;
+        } else if (angle == -10) {
+            angle = 350;
+        } else if (angle == -20) {
+            angle = 340
         }
     }
     else if(e.key == "Left" || e.key == "ArrowLeft") {
         leftPressed = true;
         angle -= 10
-        console.log("right key pressed and  -" + angle)
+        console.log("left key pressed and  " + angle)
+       
         bagelBall.style.transform = `rotate(${angle}deg)`;
-        if (angle == 0) {
-            angle = 350;
+        if (angle == 350) {
+            angle = -10;
+        } else if (angle == 360) {
+            angle = 0;
+        } else if (angle == 370) {
+            angle = 10
         }
+      
     }
 }
 
@@ -112,30 +123,6 @@ function keyUpHandler(e) {
 
 
 
-// document.onkeydown = function(e) {
-//     var event = window.event ? window.event : e;
-    
-//     if (e.keyCode == '37') {
-//        angle += 5;
-//     }
-//     else if (e.keyCode == '39') {
-//        angle -= 5;
-//     }
-// }
-// var angle = 0;
-// $('#left').on('event', function () {  
-//     angle -= 10;
-//     $("#bagel").rotate(angle);
-// });
-
-// $('#right').on('event', function () {  
-//     angle += 10;
-//     $("#bagel").rotate(angle);
-// });
-// function myFunction() {
-//     var img = document.getElementById("bagel");
-//     img.setAttribute("class", "rotated-image");
-//   }
 
 // // DOM situation to update a variable?
 // var xBall = document.getElementById("xBall").value == "1"
@@ -146,9 +133,11 @@ function keyUpHandler(e) {
 // math functions   //
 
 
+var angle = 90
+
 var xDistance = xStart - xHole;
 var yDistance = yStart - yHole;
-var playerDegree = 0-360 // chosen by arrow key incremenets of 10?
+
 
 const slopeIndex = (x, y) => {
     return (y / x);
@@ -163,7 +152,7 @@ const theBrendan = (x, y, x2, y2) => {
 
 var distanceToHole = theBrendan(xStart, yStart, xHole, yHole); //<--- pythagorean theorem // this is the hypotenuse
 
-var playerAngle = Math.tan(playerDegree)
+var playerAngle = Math.tan(angle);
 
 // math functions end // 
 
@@ -218,8 +207,6 @@ function clubplus() {
     if (clubSelection == 5){
         clubSelection = 0;
     }
-    
-
 }
 function clubminus() {
     club = {
@@ -252,6 +239,7 @@ console.log("this is the distance to hole: " + distanceToHole);
 
 console.log("this is winning distance: " + winningDistance)
 console.log("line 91 slope index / win angle : " + winAngle)
+
 
 
 holeDistance.beginPath(0,0); // <--- not sure what this does.
@@ -412,7 +400,7 @@ function ballLoop() {
     } else if (xBall > xHole) {
       xBall--
      
-    } if ((xBall + 5) > (xHole) && (xBall - 10) < (xHole + 5) && (yBall + 5) > (yHole) && (yBall - 10) < (yHole-5)) {
+    } if ((xBall + 10) > (xHole) && (xBall - 10) < (xHole + 5) && (yBall + 10) > (yHole) && (yBall - 10) < (yHole + 5)) {
         // this magnetizes the ball to go into the hole if youre close ? not sure how close"
         xBall = xHole;
         yBall = yHole
@@ -464,6 +452,7 @@ function playerHit() {
 
 
 
+
 const holeInOne = () => {
     
     var swingDistance = swingPower * distanceToHole * .01;
@@ -475,7 +464,8 @@ const holeInOne = () => {
         ballLoop();
         document.getElementById("stroke").innerText=`Stroke: ${numberOfStrokes}`;
         console.log("this is where number of strokes, swing button: " + numberOfStrokes)
-
+        console.log("line459 this is angle being logged: " + angle)
+        
         // console.log('you lose')
         // console.log("Your swing Distance less than 50 is: " + swingDistance)
         // console.log("Your swing swingPower more than 50 is: " + swingPower)
@@ -489,6 +479,7 @@ const holeInOne = () => {
         numberOfStrokes++
         document.getElementById("stroke").innerText=`Stroke: ${numberOfStrokes}`;
         console.log("this is where number of strokes, swing button: " + numberOfStrokes)
+        console.log("line474 this is angle being logged: " + angle)
         // console.log('you win')
         // console.log("Your swing Distance more than 50 is: " + swingDistance)
         // console.log("Your swing swingPower more than 50 is: " + swingPower)

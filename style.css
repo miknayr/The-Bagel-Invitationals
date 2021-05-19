@@ -62,6 +62,7 @@
 }
 
 #bagel {
+  transform: rotate(90deg);
   transform-origin: center;
   position:fixed;
   width: 170px;

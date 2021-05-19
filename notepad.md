@@ -352,8 +352,8 @@ angle of ball = player chooses arrow keys over 360 degrees
 
 
 for hitDistance number {
-playerAngle + xBall += xBall 
-playerangle +  yBall += yBall 
+angle + xBall += xBall 
+angle +  yBall += yBall 
 }
 
 
