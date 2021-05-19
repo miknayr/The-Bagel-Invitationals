@@ -105,3 +105,12 @@ this should give ball into free form. if ball goes out of html canvas, reset int
 
 need to figure out why Object.value ( line 198 ) goes to undefined after looping
 started new player ball movement function/formula
+
+
+5/19 2am ;
+need to figure out how to show ball preview with angle
+need to figure out how to control the power to move within that angle
+
+collision works, it'll magnetize into the hole if its close or within 10 pixels.
+
+need to figure out the angle situation

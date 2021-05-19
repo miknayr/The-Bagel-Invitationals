@@ -120,6 +120,8 @@ function keyUpHandler(e) {
 
 // math functions   //
 
+
+
 var numberOfStrokes = 0
 
 club = {
@@ -136,6 +138,10 @@ var playerSwingDistance = swingPower * Object.values(club)[clubSelection] * 0.01
 
 var xDistance = xStart - xHole;
 var yDistance = yStart - yHole;
+
+
+
+
 
 
 const slopeIndex = (x, y) => {
@@ -319,13 +325,12 @@ shapes.fill();
 
 shapes.beginPath(); // <--- ball canvas  current max
 shapes.arc(xCurrentMax, yCurrentMax, 5, 0, Math.PI*2); // <- fill xGraph, yGraph
+shapes.lineTo(300, 150);
 shapes.fillStyle = "yellow";
 shapes.fill();
 shapes.lineWidth = 1;
 shapes.strokeStyle = 'black';
 shapes.stroke();
-
-
 shapes.closePath();
 
 function drawStatic() {
@@ -430,9 +435,12 @@ function drawfakeBall() {
 // ~~~~~~~~ second canvas~~~~~~~~~~~~~
 
 function animeBall() {
-    drawStatic()
-       drawBall(); 
-       drawCup 
+    shapes.clearRect(0, 0, layerOne.width, layerOne.height);
+
+    drawStatic();
+    drawBall(); 
+    drawCup();
+    drawfakeBall()
 }
 
 
@@ -562,6 +570,7 @@ const playerHit = () => {
     playerBall()
     console.log("you hit! line 515")
     gameStatus = false
+
     if ((xBall == xHole) && (yBall == yHole)) {
         console.log("Nice Shot!");
         ballWin();
