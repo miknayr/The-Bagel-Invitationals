@@ -82,3 +82,14 @@
 
 
 - still have to figure out how to reset power bar to adjust power ...
+
+
+5/18 6pm update; 
+- club change works
+- things to do;
+add in rotation to "player degree" in order to rotate the bagel ball image and determine player slope
+- create formula for power based on club selection
+this should give ball into free form. if ball goes out of html canvas, reset into spot where it left.
+- figure out how to reset power bar to adjust for strokes.
+- stop game after ball has entered hole, set game status when teeing off and ball in hole.
+

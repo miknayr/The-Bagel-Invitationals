@@ -137,9 +137,10 @@ var numberOfStrokes = 0
 
 var clubSelection = 0
 
-document.getElementById('choice').addEventListener('click', loopArray); 
+document.getElementById('choice').addEventListener('click', clubplus); 
+document.getElementById('choice2').addEventListener('click', clubminus); 
 
-function loopArray() {
+function clubplus() {
     club = {
         "Driver": 300,
         "Fairway":  225,
@@ -154,22 +155,23 @@ function loopArray() {
     }
     
 
-    // for (let key in club) {
-    //     console.log(key)
-    //     i++
-    //     if (i == 5){
-    //         i = 0
-    //     }
-    // } 
-
-    // for (let i = 0; i < Object.keys(club).length; i++) {
-    //     console.log(Object.keys(club)[i])
-    //     // document.querySelector('#output').innerText = Object.keys(club)[i];
-
-        
-    // };
 }
+function clubminus() {
+    club = {
+        "Driver": 300,
+        "Fairway":  225,
+        "Iron":  150,
+        "Wedge": 75,
+        "Putter": 30
+    };
+    document.querySelector('#clubSelection').innerText = "Club: " + Object.keys(club)[clubSelection];
+    if (clubSelection == 0){
+        clubSelection = 5;
+    }
+    clubSelection--
+    
 
+}
 
 
 
