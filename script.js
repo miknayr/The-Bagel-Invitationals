@@ -70,7 +70,72 @@ var hype = document.getElementById("hype");
 var lowstinger = document.getElementById("lowstinger"); 
 var swing = document.getElementById("swing"); 
 
+var rightPressed = false;
+var leftPressed = false;
+var bagelBall = document.getElementById('bagel')
+var angle = 0
 
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+
+function keyDownHandler(e) {
+    if(e.key == "Right" || e.key == "ArrowRight") {
+        rightPressed = true;
+        angle += 10
+        console.log("right key pressed and  +" + angle)
+        bagelBall.style.transform = `rotate(${angle}deg)`;
+        if (angle == 360) {
+            angle = 0;
+        }
+    }
+    else if(e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = true;
+        angle -= 10
+        console.log("right key pressed and  -" + angle)
+        bagelBall.style.transform = `rotate(${angle}deg)`;
+        if (angle == 0) {
+            angle = 350;
+        }
+    }
+}
+
+function keyUpHandler(e) {
+    if(e.key == "Right" || e.key == "ArrowRight") {
+        rightPressed = false;
+        
+    }
+    else if(e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = false;
+    }
+}
+
+
+
+
+// document.onkeydown = function(e) {
+//     var event = window.event ? window.event : e;
+    
+//     if (e.keyCode == '37') {
+//        angle += 5;
+//     }
+//     else if (e.keyCode == '39') {
+//        angle -= 5;
+//     }
+// }
+// var angle = 0;
+// $('#left').on('event', function () {  
+//     angle -= 10;
+//     $("#bagel").rotate(angle);
+// });
+
+// $('#right').on('event', function () {  
+//     angle += 10;
+//     $("#bagel").rotate(angle);
+// });
+// function myFunction() {
+//     var img = document.getElementById("bagel");
+//     img.setAttribute("class", "rotated-image");
+//   }
 
 // // DOM situation to update a variable?
 // var xBall = document.getElementById("xBall").value == "1"

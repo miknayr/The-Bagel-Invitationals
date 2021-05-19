@@ -93,3 +93,7 @@ this should give ball into free form. if ball goes out of html canvas, reset int
 - figure out how to reset power bar to adjust for strokes.
 - stop game after ball has entered hole, set game status when teeing off and ball in hole.
 
+
+5/18 8pm update;
+- added keyboard stroke ! left and right to set angle used
+

@@ -362,5 +362,3 @@ playerangle +  yBall += yBall
 pythagorean is needed to know how far away the hole is  (distance to hole)
 And then y = mx + b is to get the ball towards the hole but based on the angle the player chooses (new ball coordinates)
 
-
-click button choose an array 
