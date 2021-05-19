@@ -114,3 +114,9 @@ need to figure out how to control the power to move within that angle
 collision works, it'll magnetize into the hole if its close or within 10 pixels.
 
 need to figure out the angle situation
+
+
+
+5/19 3pm ;
+- fixed club selection and updates values too
+need to create algorithm for ball movement

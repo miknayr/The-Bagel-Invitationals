@@ -70,6 +70,9 @@ var rightPressed = false;
 var leftPressed = false;
 var bagelBall = document.getElementById('bagel')
 
+
+
+
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
@@ -77,33 +80,33 @@ function keyDownHandler(e) {
     
     if(e.key == "Right" || e.key == "ArrowRight") {
         rightPressed = true;
-        angle += 10
-        console.log("right key pressed and  " + angle)
-        console.log(xCurrentMax)
+        movement.degrees += 10
+        console.log("right key pressed and  " + movement.degrees)
+        
  
-        bagelBall.style.transform = `rotate(${angle}deg)`;
-        if (angle == 350) {
-            angle = -10;
-        } else if (angle == 360) {
-            angle = 0;
-        } else if (angle == 370) {
-            angle = 10
+        bagelBall.style.transform = `rotate(${movement.degrees}deg)`;
+        if (movement.degrees == 350) {
+            movement.degrees = -10;
+        } else if (movement.degrees == 360) {
+            movement.degrees = 0;
+        } else if (movement.degrees == 370) {
+            movement.degrees = 10
         }
     }
     else if(e.key == "Left" || e.key == "ArrowLeft") {
         leftPressed = true;
-        angle -= 10
-        console.log("left key pressed and  " + angle)
-        console.log(yCurrentMax)
+        movement.degrees -= 10
+        console.log("left key pressed and  " + movement.degrees)
+        
    
-        bagelBall.style.transform = `rotate(${angle}deg)`;
+        bagelBall.style.transform = `rotate(${movement.degrees}deg)`;
 
-        if (angle == 0) {
-            angle = 360;
-        } else if (angle == -10) {
-            angle = 350;
-        } else if (angle == -20) {
-            angle = 340
+        if (movement.degrees == 0) {
+            movement.degrees = 360;
+        } else if (movement.degrees == -10) {
+            movement.degrees = 350;
+        } else if (movement.degrees == -20) {
+            movement.degrees = 340
         }
     }
 }
@@ -124,22 +127,22 @@ function keyUpHandler(e) {
 
 var numberOfStrokes = 0
 
-club = {
-    "Driver": 300,
-    "Fairway":  225,
-    "Iron":  150,
-    "Wedge": 75,
-    "Putter": 30
-}
+let clubs = [
+    { name: "Driver", value: 300},
+    { name: "Fairway", value: 225},
+    { name: "Iron", value: 150},
+    { name: "Wedge", value: 75},
+    { name: "Putter", value: 30}
+]
+
 var clubSelection = 0
 
+var clubDistance = clubs[clubSelection].value
 
-var playerSwingDistance = swingPower * Object.values(club)[clubSelection] * 0.01
+var playerSwingDistance = swingPower * clubs[clubSelection].value * 0.01
 
 var xDistance = xStart - xHole;
 var yDistance = yStart - yHole;
-
-
 
 
 
@@ -185,61 +188,83 @@ var xSumBtH = Math.abs(yBall - yHole)
 var hitDistance = null
 var numberOfStrokes = 0
 
-club = {
-    "Driver": 300,
-    "Fairway":  225,
-    "Iron":  150,
-    "Wedge": 75,
-    "Putter": 30
-}
 
-var playerSwingDistance = swingPower * Object.values(club)[clubSelection] * 0.01
+var playerSwingDistance = swingPower * clubs[clubSelection].value * 0.01
 
 
 
 document.getElementById('choice1').addEventListener('click', clubplus); 
 document.getElementById('choice2').addEventListener('click', clubminus); 
-var clubSelection = 0
+
 
 function clubplus() {
+// var playerSwingDistance = swingPower * clubs[clubSelection].value * 0.01
 
-var playerSwingDistance = swingPower * Object.values(club)[clubSelection] * 0.01
-    club = {
-        "Driver": 300,
-        "Fairway":  225,
-        "Iron":  150,
-        "Wedge": 75,
-        "Putter": 30
-    };
-    document.querySelector('#clubSelection').innerText = "Club: " + Object.keys(club)[clubSelection];
-    drawfakeBall()
+
+    clubSelection++
     if (clubSelection == 5){
         clubSelection = 0;
     }
-    clubSelection++
-    console.log("the current club distance is : " + Object.keys(club)[clubSelection])
+    document.querySelector('#clubSelection').innerText = "Club: " + clubs[clubSelection].name;
+    console.log("the current club selection is : " + clubs[clubSelection].name)
+    console.log("the current club distance is : " + clubs[clubSelection].value)
 }
 
 function clubminus() {
 
-var playerSwingDistance = swingPower * Object.values(club)[clubSelection] * 0.01
-    club = {
-        "Driver": 300,
-        "Fairway":  225,
-        "Iron":  150,
-        "Wedge": 75,
-        "Putter": 30
-    };
-    document.querySelector('#clubSelection').innerText = "Club: " + Object.keys(club)[clubSelection];
-   
-    if (clubSelection == 0){
-        clubSelection = 5;
-    }
-    clubSelection--
 
+var clubDistance = clubs[clubSelection].value
     
+    clubSelection--
+    
+    if (clubSelection == -1){
+        clubSelection = 4;
+    }
+
+    document.querySelector('#clubSelection').innerText = "Club: " + clubs[clubSelection].name;
+    console.log("the current club selection is : " + clubs[clubSelection].name)
+    console.log("the current club distance is : " + clubs[clubSelection].value)
 }
 
+var ship = {  // reset ship position for demo
+    xBall,
+    yBall
+  }
+var movement = {
+    degrees: 90,
+    amount: clubs[clubSelection].value
+  }
+  
+  var shapes = document.querySelector("canvas").getContext("2d");
+  
+  (function loop() {
+    shapes.clearRect(0, 0, 300, 150);
+     drawStatic();
+      drawBall();
+      drawCup();
+    var ship = {  // reset ship position for demo
+      xBall,
+      yBall
+    }
+  
+    shapes.strokeRect(ship.xBall - 2, ship.yBall - 2, 4, 4);
+    shapes.fillText("From", ship.xBall + 5, ship.yBall);
+  
+    var angle = (movement.degrees - 90) / 180 * Math.PI; // compensate angle -90°, conv. to rad
+    ship.xBall += movement.amount * Math.cos(angle); // move ship
+    ship.yBall += movement.amount * Math.sin(angle);
+  
+    shapes.strokeRect(ship.x - 2, ship.y - 2, 4, 4);
+    shapes.fillText(movement.degrees + "°", ship.xBall + 5, ship.yBall);
+    
+    
+    movement.degrees = movement.degrees % 360;
+    requestAnimationFrame(loop);
+
+
+    
+    
+  })();
 
 
 
@@ -257,17 +282,17 @@ var xSlope = xBall - xCurrentMax;
 var ySlope = yBall - yCurrentMax;
 
 
-// console.log('x start y start: ' + xStart + " | "+ yStart)
-// console.log('x hole y hole: ' + xHole + " | "+ yHole)
+console.log('x start y start: ' + xStart + " | "+ yStart)
+console.log('x hole y hole: ' + xHole + " | "+ yHole)
 // console.log("Your Swing Distance inside power is : " + swingDistance)
 // console.log("this is the numeric value of xDistance: " + Math.abs(xDistance))
 // console.log("this is the numeric value of yDistance: " + Math.abs(yDistance))
 // console.log("this is the distance to hole: " + distanceToHole);
-console.log("this is the current Max for distance" + xCurrentMax + " & " + yCurrentMax)
-console.log("x Slope index " + xSlope)
-console.log("y Slope index " + ySlope)
-console.log("math sin : " + Math.sin(angle))
-console.log("math cos : " + Math.cos(angle))
+// console.log("this is the current Max for distance" + xCurrentMax + " & " + yCurrentMax)
+// console.log("x Slope index " + xSlope)
+// console.log("y Slope index " + ySlope)
+// console.log("math sin : " + Math.sin(angle))
+// console.log("math cos : " + Math.cos(angle))
 // console.log("this is winning distance: " + winningDistance)
 // console.log("line 91 slope index / win angle : " + slopeAngle)
 
@@ -275,7 +300,7 @@ console.log("math cos : " + Math.cos(angle))
 
 holeDistance.beginPath(0,0); // <--- not sure what this does.
 holeDistance.moveTo(xStart, yStart); // xStart,yStart <---- plug in the above
-holeDistance.lineTo(xHole, yHole); // xHole, yHole <--- plug in the above
+// holeDistance.lineTo(xHole, yHole); // xHole, yHole <--- plug in the above
 
 // this is the green hole location
    
@@ -325,7 +350,7 @@ shapes.fill();
 
 shapes.beginPath(); // <--- ball canvas  current max
 shapes.arc(xCurrentMax, yCurrentMax, 5, 0, Math.PI*2); // <- fill xGraph, yGraph
-shapes.lineTo(300, 150);
+shapes.lineTo(ship.xBall, ship.yBall);
 shapes.fillStyle = "yellow";
 shapes.fill();
 shapes.lineWidth = 1;
@@ -391,7 +416,7 @@ function drawStatic() {
 
 document.getElementById("menuDist").innerText=`Distance to Hole: ${distanceToHole}`;
 document.getElementById("stroke").innerText=`Stroke: ${numberOfStrokes}`;
-// document.getElementById("clubChoice").innerText= "Club: " + Object.keys(club)[0];
+// document.getElementById("clubChoice").innerText= "Club: " + clubs[clubSelection].name;
 
 // ~~~~~second canvas~~~~~~~~
 
@@ -453,7 +478,7 @@ function animeBall() {
 
 // function playerBall() {
    
-//     var playerSwingDistance = swingPower * Object.values(club)[clubSelection] * .01
+//     var playerSwingDistance = swingPower * clubs[clubSelection].value * .01
 //     var playerAngle = Math.tan(angle);
 
 //     drawStatic()
@@ -529,12 +554,14 @@ function animeBall() {
 
 
 function ballMovement() {
+    numberOfStrokes++
     setTimeout(function(){
         var ballMovement = setInterval(draw, 6);
     }, 0); // <--- adjust this number for ball movement delay
 }
 
 function draw() {
+    
     drawStatic()
     shapes.clearRect(0, 0, layerOne.width, layerOne.height);
     if(yBall < yHole) {
@@ -561,30 +588,75 @@ function draw() {
 
 
 
-const playerHit = () => {
-    var playerSwingDistance = swingPower * Object.values(club)[clubSelection] * .01
-    swing.play();
-    swing.volume = 0.2
-    numberOfStrokes++
-    document.getElementById("stroke").innerText=`Stroke: ${numberOfStrokes}`;
-    playerBall()
-    console.log("you hit! line 515")
-    gameStatus = false
+// const playerHit = () => {
+//     var playerSwingDistance = swingPower * clubs[clubSelection].value * .01
+//     swing.play();
+//     swing.volume = 0.2
+//     numberOfStrokes++
+//     document.getElementById("stroke").innerText=`Stroke: ${numberOfStrokes}`;
+//     playerBall()
+//     console.log("you hit! line 515")
+//     gameStatus = false
 
-    if ((xBall == xHole) && (yBall == yHole)) {
-        console.log("Nice Shot!");
-        ballWin();
-    }
-}
+//     if ((xBall == xHole) && (yBall == yHole)) {
+//         console.log("Nice Shot!");
+//         ballWin();
+//     }
+// }
+
+
+//     // function ballMovement() {
+//     //     numberOfStrokes++
+//     //     setTimeout(function(){
+//     //         var ballMovement = setInterval(playerBall, 6);
+//     //     }, 0); // <--- adjust this number for ball movement delay
+//     // }
+// function playerBall() {
+   
+//     var playerSwingDistance = swingPower * clubs[clubSelection].value * .01
+//     var playerAngle = Math.tan(angle);
+//     // for (let i = 0; i <= wholeSwingDistance; i++) {
+//     // if xBall == 
+//     drawStatic()
+   
+
+//         shapes.clearRect(0, 0, layerOne.width, layerOne.height);
+//         animeBall(); // <-- check line 386 to implement delay
+//         if (xBall < xHole) {
+//             xBall--
+           
+//         } else if (xBall > xBall) {
+//             xBall++
+            
+//         }
+//         if (yBall < yBall) {
+//             yBall++
+           
+//         } else if (yBall > yHole) {
+//             yBall--
+            
+//         }if ((xBall + 10) > (xHole) && (xBall - 10) < (xHole + 5) && (yBall + 10) > (yHole) && (yBall - 10) < (yHole + 5)) {
+//             xBall = xHole;
+//             yBall = yHole
+//             clearInterval(ballMovement)
+//             console.log("ball is cleared");
+//             playerSwingDistance = i
+//     }
+//     drawStatic()
+//     drawBall(); 
+//     drawCup ();
+
+    
+// }
 
 
 
 // const holeInOne = () => {
     
 //     var swingDistance = swingPower * distanceToHole * .01;
-//     var playerSwingDistance = swingPower * Object.values(club)[clubSelection] * .01
+//     var playerSwingDistance = swingPower * clubs[clubSelection].value * .01
 
-//     if (playerSwingDistance < Object.values(club)[clubSelection]) { // if you change this to swingDistance < winning distance, it doesnt work
+//     if (playerSwingDistance < clubs[clubSelection].value { // if you change this to swingDistance < winning distance, it doesnt work
 //         swing.play();
 //         swing.volume = 0.4
 //         gameStatus = true;
@@ -645,13 +717,14 @@ const playerHit = () => {
             clearInterval(intervalId);
             shoudStartTimer = true;
             ballMovement()
+            // playerHit();
         }
       
     })
     
     
 
-   console.log("the current club distance is : " + Object.values(club)[clubSelection])
+   console.log("the current club distance is : " + clubs[clubSelection].value)
 
     //  console.log('x start y start: ' + xStart + " | "+ yStart)
     //  console.log('x hole y hole: ' + xHole + " | "+ yHole)
