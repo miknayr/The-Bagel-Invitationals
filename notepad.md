@@ -449,3 +449,33 @@ actualmovement.amount
 
 
 xball += actualmovement.amount * Math.cos(angle)
+
+
+
+var playerSwingDistance = swingPower * clubs[clubSelection].value * 0.01
+
+
+if 
+ if (xBall < xHole) {
+//             xBall--
+
+//         } else if (xBall > xBall) {
+//             xBall++
+
+//         }
+//         if (yBall < yBall) {
+//             yBall++
+
+//         } else if (yBall > yHole) {
+//             yBall--
+
+//         }if ((xBall + 10) > (xHole) && (xBall - 10) < (xHole + 5) && (yBall + 10) > (yHole) && (yBall - 10) < (yHole + 5)) {
+//             xBall = xHole;
+//             yBall = yHole
+//             clearInterval(ballMovement)
+//             console.log("ball is cleared");
+//             playerSwingDistance = i
+//     }
+
+
+https://stackoverflow.com/questions/28574628/invert-x-and-y-coordinates-on-html5-canvas

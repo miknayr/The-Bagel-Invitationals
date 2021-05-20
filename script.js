@@ -136,8 +136,6 @@ var clubSelection = 0
 
 var clubDistance = clubs[clubSelection].value
 
-var playerSwingDistance = swingPower * clubs[clubSelection].value * 0.01
-
 var xDistance = xStart - xHole;
 var yDistance = yStart - yHole;
 
@@ -240,7 +238,7 @@ var shapes = document.querySelector("canvas").getContext("2d");
   shapes.strokeRect(ship.xBall - 2, ship.yBall - 2, 4, 4);
   shapes.fillText("From", ship.xBall + 5, ship.yBall);
 
-  var angle = (maxmovement.degrees - 90) / 180 * Math.PI; // compensate angle -90°, conv. to rad
+  angle = (maxmovement.degrees - 90) / 180 * Math.PI; // compensate angle -90°, conv. to rad
   ship.xBall += maxmovement.amount * Math.cos(angle); // end ball x coordinate
   ship.yBall += maxmovement.amount * Math.sin(angle); // end ball y coordinate
 
@@ -256,7 +254,6 @@ var shapes = document.querySelector("canvas").getContext("2d");
 
 // // ~~~~~~~~ end of variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-// delet eone or this one
 var xPlayerMax = Math.cos(angle) * playerSwingDistance + xBall // <--- coordinates!
 var yPlayerMax = Math.sin(angle) * playerSwingDistance + yBall // <--- coordinates!
 
@@ -447,43 +444,58 @@ function animeBall() {
     
 }
 
+var ballIntervalId;
 // //!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function ballMovement() {
-setTimeout(function(){
-            var ballMovement = setInterval(playerBall, 100);
-        }, 0); // <--- adjust this number for ball movement delay
-    }
+  setTimeout(function(){
+    ballIntervalId = setInterval(playerBall, 100);
+  }, 0); // <--- adjust this number for ball movement delay
+}
 
-function playerBall() {    
-        drawStatic()
+function playerBall() {
+  
+  console.log('*** playerBall() swingPower:', swingPower);
+  console.log('*** playerBall() playerSwingDistance:', playerSwingDistance);
 
-      shapes.clearRect(0, 0, layerOne.width, layerOne.height);
-      animeBall(); // <-- check line 386 to implement delay
+  console.log('*** playerBall() xBall:', xBall);
+  console.log('*** playerBall() yBall:', yBall);
+  
+  console.log('*** playerBall() xPlayerMax:', xPlayerMax);
+  console.log('*** playerBall() yPlayerMax:', yPlayerMax);
+
+  drawStatic()
+
+  shapes.clearRect(0, 0, layerOne.width, layerOne.height);
+  animeBall(); // <-- check line 386 to implement delay
       
-      if (xBall < xPlayerMax) {
-        xBall += Math.cos(angle) // <- clean this up
-        console.log("ths is the angle cos :" + Math.cos(angle))
-          
-      } else if (xBall > xPlayerMax) {
-          xBall -= Math.cos(angle) // <- clean this up
-          console.log("ths is the angle cos :" + Math.cos(angle))
-      }
-      if (yBall < yPlayerMax) {
-          yBall += Math.sin(angle)
-          console.log("ths is the angle sin :" + Math.sin(angle))
-          
-      } else if (yBall > yPlayerMax) {
-          yBall -= Math.sin(angle)
-          console.log("ths is the angle sin :" + Math.sin(angle))
-
-      } if ((xBall + 10) > (xPlayerMax) && (xBall - 10) < (yPlayerMax + 5) && (yBall + 10) > (yPlayerMax) && (yBall - 10) < (yPlayerMax + 5)) {
-            xBall = xPlayerMax;
-            yBall = yPlayerMax
-            clearInterval(ballMovement)  
-
-          console.log("ball is cleared");
-          
+  if (xBall < xPlayerMax) {
+    // xBall += Math.cos(angle) // <- clean this up
+    xBall++
+    console.log("ths is the angle cos :" + Math.cos(angle))
+      
+  } else if (xBall > xPlayerMax) {
+    // xBall -= Math.cos(angle) // <- clean this up
+    xBall--
+    console.log("ths is the angle cos :" + Math.cos(angle))
   }
+
+  if (yBall < yPlayerMax) {
+    // yBall += Math.sin(angle)
+    yBall++
+    console.log("ths is the angle sin :" + Math.sin(angle))
+      
+  } else if (yBall > yPlayerMax) {
+    // yBall -= Math.sin(angle)
+    yBall++
+    console.log("ths is the angle sin :" + Math.sin(angle))
+  } 
+  console.log("ball isnt equaled");
+  
+  if ((xBall == xPlayerMax) && (yBall == yPlayerMax)) {
+    console.log("ball is equaled");
+    clearInterval(ballIntervalId)  
+  }
+
   drawStatic()
   drawBall();
   drawCup ();
@@ -530,7 +542,7 @@ function playerBall() {
 
 
 swingButton.addEventListener('click', (e) => {
-  console.log('*** you clicked swingButton');
+  
   var elem = document.getElementById("myBar");
   var reverse = false;
 
@@ -557,12 +569,17 @@ swingButton.addEventListener('click', (e) => {
     swingPower = 0;
     intervalId = setInterval(power, 10);
     shouldStartTimer = false;
-    console.log('*** swing bar start, shouldStartTimer now equals', shouldStartTimer)
+    
   } else {
     // swing bar end
     clearInterval(intervalId);
     shouldStartTimer = true;
-    console.log('*** swing bar end, shouldStartTimer now equals', shouldStartTimer)
+    
+    playerSwingDistance = swingPower * clubs[clubSelection].value * 0.01
+    
+    xPlayerMax = Math.cos(angle) * playerSwingDistance + xBall // <--- coordinates!
+    yPlayerMax = Math.sin(angle) * playerSwingDistance + yBall
+
     ballMovement()
     
   }
@@ -571,8 +588,8 @@ swingButton.addEventListener('click', (e) => {
 
 
     console.log("the current club distance is : " + clubs[clubSelection].value)
-    console.log("the ship x ball is : " + ship.xBall)
-    console.log("the ship x ball is : " + ship.yBall)
+    console.log("the ship x ball is : " + xPlayerMax)
+    console.log("the ship x ball is : " + yPlayerMax)
 
 
     //  console.log('x start y start: ' + xStart + " | "+ yStart)

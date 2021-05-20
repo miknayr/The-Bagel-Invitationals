@@ -134,3 +134,11 @@ still need to fix swing bar to dynamically adjust based on click
 -arrow key to change clubs
 ball still stuck in loop, need to fix / figure out win condition 
 - need to move ball to its play hit siwng distance
+
+
+5/19 11pm update;
+game is not working :\ but need to figure out angle situation
+
+ball moves only in on direction
+maybe fix degree situation
+otherwise, revert to xball = xhole situation
