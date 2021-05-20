@@ -16,6 +16,7 @@ function tiger() {
 }
 
 function ballWin() { // celebration;
+ 
   setTimeout(function() {
       hype.volume = 0.01
       hype.volume = 0.03
@@ -25,11 +26,11 @@ function ballWin() { // celebration;
       hype.volume = 0.1
       hype.play();
       tiger();
-  }, 1000);
+  }, 800);
 
-  // setTimeout(function() {
-  //   document.getElementById("z").src=" "
-  // }, 4000);
+  setTimeout(function() {
+    document.getElementById("z").src=" "
+  }, 4000);
 
   clearInterval(ballWin)
 }
@@ -49,7 +50,6 @@ var yStart = randomInteger(800, 950)
 var xHole = randomInteger(50, 400)
 var yHole = randomInteger(50, 250)
 
-
 var xBall = xStart
 var yBall = yStart
 
@@ -61,8 +61,8 @@ var xTee = xStart - 40
 var yTee = yStart - 15
 var leftPos = xStart - 20
 var rightPos = xStart + 20
-var angle = 0
-// var gameStatus = null; <-- will need later??
+var angle = 90
+var gameStatus = false;
 var hype = document.getElementById("hype");
 var lowstinger = document.getElementById("lowstinger");
 var swing = document.getElementById("swing");
@@ -163,18 +163,9 @@ const theBrendan = (x, y, x2, y2) => {
 var distanceToHole = theBrendan(xBall, yBall, xHole, yHole) //<--- pythagorean theorem // this is the hypotenuse
 
 
+// var slopeAngle = slopeIndex(xDistance, yDistance); // <--- this is the winning slope
 
-// math functions end //
-
-
-
-// const slopeIndex = (x, y) => {
-//     return (y / x);
-// }
-
-var slopeAngle = slopeIndex(xDistance, yDistance); // <--- this is the winning slope
-
-var winningDistance = .9 * distanceToHole;
+// var winningDistance = .9 * distanceToHole;
 
 var swingDistance = swingPower * distanceToHole * .01;
 
@@ -231,7 +222,7 @@ function clubMinus() {
 }
 
 var maxmovement = {
-  degrees: 90,
+  degrees: 0,   // <--- this is angle too
   amount: clubs[clubSelection].value
 }
 
@@ -245,7 +236,7 @@ var yNewBall
 var shapes = document.querySelector("canvas").getContext("2d");
 
 (function loop() {
-
+  if (gameStatus = true) {
   if (preview == true) {
     shapes.clearRect(0, 0, 300, 150);
     drawStatic();
@@ -256,24 +247,24 @@ var shapes = document.querySelector("canvas").getContext("2d");
       yBall
     }
     
-      // shapes.strokeRect(ship.x, ship.y, 4, 4);
-      // shapes.fillText("From", ship.xBall + 5, ship.yBall);
-  
+    // shapes.strokeRect(ship.x, ship.y, 4, 4);
+    // shapes.fillText("From", ship.xBall + 5, ship.yBall);
+    
     angle = (maxmovement.degrees - 90) / 180 * Math.PI; // compensate angle -90°, conv. to rad
     ship.xBall += maxmovement.amount * Math.cos(angle); // end ball x coordinate
     ship.yBall += maxmovement.amount * Math.sin(angle); // end ball y coordinate
     // console.log("this is new x coord: " + ship.xBall + "    " + "this is new y coord: " + ship.yBall )
     
-  
-    // shapes.strokeRect(0, 0, 4, 4);
+    
+    // shapes.strokeRect(50, 50, 50, 50);
     // shapes.fillText(maxmovement.degrees + "°", ship.xBall, ship.yBall); // <--- this is the preview
-  
+    
     xNewBall = ship.xBall;
     yNewBall = ship.yBall;
     maxmovement.degrees = maxmovement.degrees % 360;
   }
-
   requestAnimationFrame(loop, 1000); // <-- keep this out
+  };
 })();
 
 
@@ -484,41 +475,32 @@ function ballMovement() {
 }
 
 function playerBall() {
-  
   drawStatic()
-
   shapes.clearRect(0, 0, layerOne.width, layerOne.height);
   animeBall(); // <-- check line 386 to implement delay
-
-  
   if (yBall < yNewBall) {
     yBall++
-    // console.log("ths is the angle sin :" + Math.sin(angle))
-    
   } else if (yBall > yNewBall) {
     yBall--
-    // console.log("ths is the angle sin :" + Math.sin(angle))
-  } 
-  
-  if (xBall < xNewBall) {
-    
+  } if (xBall < xNewBall) {
     xBall++
-    // console.log("ths is the angle cos :" + Math.cos(angle))
-    
   } else if (xBall > xNewBall) {
     xBall--
-    // console.log("ths is the angle cos :" + Math.cos(angle))
   }
-  //
+
   if ((xBall + 1) > (xNewBall) && (xBall - 1) < (xNewBall + 1) && (yBall + 1) > (yNewBall) && (yBall - 1) < (yNewBall + 1)) {
     preview = true
     xBall = xNewBall;
     yBall = yNewBall;
+    
+    document.getElementById("menuDist").innerText=`Distance to Hole: ${theBrendan(xBall, yBall, xHole, yHole)}`;
+    // `Distance to Hole: ${distanceToHole}`
+   
     console.log("ball is equaled");
     clearInterval(ballIntervalId)  
   }
 
-  if ((xBall + 10) > (xHole) && (xBall - 10) < (xHole + 5) && (yBall + 10) > (yHole) && (yBall - 10) < (yHole + 5)) {
+  if ((xBall + 5) > (xHole) && (xBall - 5) < (xHole + 5) && (yBall + 5) > (yHole) && (yBall - 5) < (yHole + 5)) {
                 xBall = xHole;
                 yBall = yHole
                 console.log("ball is cleared");
@@ -539,6 +521,8 @@ function playerBall() {
   drawCup ();
   drawBall ();
 }
+
+
 
 // console.log('*** playerBall() xBall:', xBall);
 // console.log('*** playerBall() yBall:', yBall);
@@ -617,15 +601,15 @@ swingButton.addEventListener('click', (e) => {
   } else {
     // swing bar end
     numberOfStrokes++
+    
     document.getElementById("stroke").innerText=`Stroke: ${numberOfStrokes}`;
-    console.log("Distance to Hole: " + distanceToHole)
-    console.log()
-    document.getElementById("menuDist").innerText=`Distance to Hole: ${distanceToHole}`;
+    // console.log("Distance to Hole: " + distanceToHole)
+    console.log("Distance to Hole: " + xBall + "   |  " + xNewBall)
     preview = false
     clearInterval(intervalId);
     shouldStartTimer = true;
-    ballMovement()
-    
+    ballMovement();
+   
   }
 })
 

@@ -164,5 +164,5 @@ if ball = hole {
 ball will go into hole if it crosses over it.
 
 bugs to fix; 
-need to update the distance to the hole
+
 need to fix the ball rotation bug where 0 != 0
