@@ -80,33 +80,33 @@ function keyDownHandler(e) {
     
     if(e.key == "Right" || e.key == "ArrowRight") {
         rightPressed = true;
-        movement.degrees += 10
-        console.log("right key pressed and  " + movement.degrees)
+        maxmovement.degrees += 10
+        console.log("right key pressed and  " + maxmovement.degrees)
         
  
-        bagelBall.style.transform = `rotate(${movement.degrees}deg)`;
-        if (movement.degrees == 350) {
-            movement.degrees = -10;
-        } else if (movement.degrees == 360) {
-            movement.degrees = 0;
-        } else if (movement.degrees == 370) {
-            movement.degrees = 10
+        bagelBall.style.transform = `rotate(${maxmovement.degrees}deg)`;
+        if (maxmovement.degrees == 350) {
+            maxmovement.degrees = -10;
+        } else if (maxmovement.degrees == 360) {
+            maxmovement.degrees = 0;
+        } else if (maxmovement.degrees == 370) {
+            maxmovement.degrees = 10
         }
     }
     else if(e.key == "Left" || e.key == "ArrowLeft") {
         leftPressed = true;
-        movement.degrees -= 10
-        console.log("left key pressed and  " + movement.degrees)
+        maxmovement.degrees -= 10
+        console.log("left key pressed and  " + maxmovement.degrees)
         
    
-        bagelBall.style.transform = `rotate(${movement.degrees}deg)`;
+        bagelBall.style.transform = `rotate(${maxmovement.degrees}deg)`;
 
-        if (movement.degrees == 0) {
-            movement.degrees = 360;
-        } else if (movement.degrees == -10) {
-            movement.degrees = 350;
-        } else if (movement.degrees == -20) {
-            movement.degrees = 340
+        if (maxmovement.degrees == 0) {
+            maxmovement.degrees = 360;
+        } else if (maxmovement.degrees == -10) {
+            maxmovement.degrees = 350;
+        } else if (maxmovement.degrees == -20) {
+            maxmovement.degrees = 340
         }
     }
 }
@@ -198,7 +198,6 @@ document.getElementById('choice2').addEventListener('click', clubminus);
 
 
 function clubplus() {
-// var playerSwingDistance = swingPower * clubs[clubSelection].value * 0.01
 
 
     clubSelection++
@@ -211,11 +210,8 @@ function clubplus() {
 }
 
 function clubminus() {
-
-
 var clubDistance = clubs[clubSelection].value
-    
-    clubSelection--
+      clubSelection--
     
     if (clubSelection == -1){
         clubSelection = 4;
@@ -230,11 +226,25 @@ var ship = {  // reset ship position for demo
     xBall,
     yBall
   }
-var movement = {
+var maxHit = {
+    xCurrentMax,
+    yCurrentMax
+}
+  var xCurrentMax = Math.cos(angle) * playerSwingDistance + xBall // <--- coordinates!
+  var yCurrentMax = Math.sin(angle) * playerSwingDistance + yBall // <--- coordinates!
+  
+
+
+var maxmovement = {
     degrees: 90,
     amount: clubs[clubSelection].value
   }
-  
+  var actualmovement = {
+    degrees: 90,
+    amount: playerSwingDistance
+  }
+
+
   var shapes = document.querySelector("canvas").getContext("2d");
   
   (function loop() {
@@ -250,21 +260,18 @@ var movement = {
     shapes.strokeRect(ship.xBall - 2, ship.yBall - 2, 4, 4);
     shapes.fillText("From", ship.xBall + 5, ship.yBall);
   
-    var angle = (movement.degrees - 90) / 180 * Math.PI; // compensate angle -90°, conv. to rad
-    ship.xBall += movement.amount * Math.cos(angle); // move ship
-    ship.yBall += movement.amount * Math.sin(angle);
+    var angle = (maxmovement.degrees - 90) / 180 * Math.PI; // compensate angle -90°, conv. to rad
+    ship.xBall += maxmovement.amount * Math.cos(angle); // end ball x coordinate
+    ship.yBall += maxmovement.amount * Math.sin(angle); // end ball y coordinate
   
     shapes.strokeRect(ship.x - 2, ship.y - 2, 4, 4);
-    shapes.fillText(movement.degrees + "°", ship.xBall + 5, ship.yBall);
+    shapes.fillText(maxmovement.degrees + "°", ship.xBall + 5, ship.yBall);
     
     
-    movement.degrees = movement.degrees % 360;
+    maxmovement.degrees = maxmovement.degrees % 360;
     requestAnimationFrame(loop);
-
-
     
-    
-  })();
+  }) ();
 
 
 
@@ -581,28 +588,30 @@ function draw() {
     drawStatic();
     drawCup();
     drawBall();  
+
+    console.log("line  Your Swing Distance power is : " + playerSwingDistance) 
+    console.log("line  " + swingPower);
 }
 
 
 
+const playerHit = () => {
+    var playerSwingDistance = swingPower * clubs[clubSelection].value * .01
+    swing.play();
+    swing.volume = 0.2
+    numberOfStrokes++
+    document.getElementById("stroke").innerText=`Stroke: ${numberOfStrokes}`;
+    playerBall()
+    console.log("you hit! line 515")
+    gameStatus = false
 
 
-
-// const playerHit = () => {
-//     var playerSwingDistance = swingPower * clubs[clubSelection].value * .01
-//     swing.play();
-//     swing.volume = 0.2
-//     numberOfStrokes++
-//     document.getElementById("stroke").innerText=`Stroke: ${numberOfStrokes}`;
-//     playerBall()
-//     console.log("you hit! line 515")
-//     gameStatus = false
-
-//     if ((xBall == xHole) && (yBall == yHole)) {
-//         console.log("Nice Shot!");
-//         ballWin();
-//     }
-// }
+    
+    if ((xBall == xHole) && (yBall == yHole)) {
+        console.log("Nice Shot!");
+        ballWin();
+    }
+}
 
 
 //     // function ballMovement() {
@@ -650,7 +659,7 @@ function draw() {
 // }
 
 
-
+/// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~depreciated ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // const holeInOne = () => {
     
 //     var swingDistance = swingPower * distanceToHole * .01;
@@ -708,7 +717,8 @@ function draw() {
             if (swingPower > 99) {
                 reverse = true
                }
-            }        
+            }   
+          
         }
         if (shouldStartTimer) {
             intervalId = setInterval(power, 10);
@@ -718,13 +728,19 @@ function draw() {
             shoudStartTimer = true;
             ballMovement()
             // playerHit();
+         
+           
+
         }
-      
+       ;
     })
     
     
 
-   console.log("the current club distance is : " + clubs[clubSelection].value)
+    console.log("the current club distance is : " + clubs[clubSelection].value)
+    console.log("the ship x ball is : " + ship.xBall)
+    console.log("the ship x ball is : " + ship.yBall)
+   
 
     //  console.log('x start y start: ' + xStart + " | "+ yStart)
     //  console.log('x hole y hole: ' + xHole + " | "+ yHole)
