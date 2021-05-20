@@ -142,3 +142,5 @@ game is not working :\ but need to figure out angle situation
 ball moves only in on direction
 maybe fix degree situation
 otherwise, revert to xball = xhole situation
+
+need to fix the canvas or figure out angle

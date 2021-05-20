@@ -479,3 +479,29 @@ if
 
 
 https://stackoverflow.com/questions/28574628/invert-x-and-y-coordinates-on-html5-canvas
+
+
+
+
+
+
+how to declare a variable 
+that uses the same base variable
+
+
+on page load, ball is loaded
+
+and then, ball preview (252) is loaded through animation loop line 232 
+
+when you press 
+
+
+
+the ship.xball/yball is being updated locally.
+
+
+ball is chasing the preview ball.
+
+
+
+if the ball is moving to the reference, 
