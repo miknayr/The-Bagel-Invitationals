@@ -154,3 +154,15 @@ need to fix the canvas or figure out angle
 if ball = hole {
     play win 
 }
+
+
+
+
+5/20 2pm update;
+- game WORKS THIS IS TRUE SHIPPABLE!!!
+- MOVE DEGREES, BAGEL SHOWS BALL ANGLE, CHOOSE CLUB AND SWING
+ball will go into hole if it crosses over it.
+
+bugs to fix; 
+need to update the distance to the hole
+need to fix the ball rotation bug where 0 != 0

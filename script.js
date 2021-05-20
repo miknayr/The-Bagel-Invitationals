@@ -12,21 +12,26 @@ function randomInteger(min, max) {
 }
 
 function tiger() {
-  document.getElementById("z").src="./images/tiger.gif"
+  document.getElementById("z").src="images/tiger.gif"
 }
 
 function ballWin() { // celebration;
   setTimeout(function() {
-      hype.volume = 0.4
+      hype.volume = 0.01
+      hype.volume = 0.03
+      hype.volume = 0.05
+      hype.volume = 0.07
+      hype.volume = 0.09
+      hype.volume = 0.1
       hype.play();
       tiger();
-  }, 4200);
+  }, 1000);
 
-  setTimeout(function() {
-    document.getElementById("z").src=" "
-  }, 4000);
+  // setTimeout(function() {
+  //   document.getElementById("z").src=" "
+  // }, 4000);
 
-  clearInterval(ballMovement)
+  clearInterval(ballWin)
 }
 
 // ~~~~~~ most variables~~~~~~~~~~~
@@ -74,34 +79,39 @@ function keyDownHandler(e) {
 
     if(e.key == "Right" || e.key == "ArrowRight") {
         rightPressed = true;
-        maxmovement.degrees += 10
         console.log("right key pressed and  " + maxmovement.degrees)
-
-
+        
+        
         bagelBall.style.transform = `rotate(${maxmovement.degrees}deg)`;
+        maxmovement.degrees += 10
         if (maxmovement.degrees == 350) {
-            maxmovement.degrees = -10;
-        } else if (maxmovement.degrees == 360) {
-            maxmovement.degrees = 0;
-        } else if (maxmovement.degrees == 370) {
-            maxmovement.degrees = 10
-        }
+          maxmovement.degrees = -10;
+        } 
+        // else if (maxmovement.degrees == 360) {
+        //     maxmovement.degrees = 0;
+        // } 
+        // else if (maxmovement.degrees == 370) {
+        //     maxmovement.degrees = 10
+        // }
     }
     else if(e.key == "Left" || e.key == "ArrowLeft") {
         leftPressed = true;
         console.log("left key pressed and  " + maxmovement.degrees)
         
         
-        bagelBall.style.transform = `rotate(${maxmovement.degrees}deg)`;
-        
         maxmovement.degrees -= 10
+        bagelBall.style.transform = `rotate(${maxmovement.degrees}deg)`;
         if (maxmovement.degrees == 0) {
-            maxmovement.degrees = 360;
-        } else if (maxmovement.degrees == -10) {
-            maxmovement.degrees = 350;
-        } else if (maxmovement.degrees == -20) {
-            maxmovement.degrees = 340
-        }  
+          maxmovement.degrees = 360;
+        } 
+        
+        
+        // else if (maxmovement.degrees == -10) {
+        //     maxmovement.degrees = 350;
+        // } 
+        // else if (maxmovement.degrees == -20) {
+        //     maxmovement.degrees = 340
+        // }  
         // else if (maxmovement.degree == )
       }
       else if(e.key == "Up" || e.key == "ArrowUp") {
@@ -150,9 +160,9 @@ const theBrendan = (x, y, x2, y2) => {
     return Math.round(Math.sqrt((x - x2) ** 2 + (y - y2) ** 2));
 }
 
-var distanceToHole = theBrendan(xStart, yStart, xHole, yHole); //<--- pythagorean theorem // this is the hypotenuse
+var distanceToHole = theBrendan(xBall, yBall, xHole, yHole) //<--- pythagorean theorem // this is the hypotenuse
 
-var playerAngle = Math.tan(angle);
+
 
 // math functions end //
 
@@ -239,15 +249,15 @@ var shapes = document.querySelector("canvas").getContext("2d");
   if (preview == true) {
     shapes.clearRect(0, 0, 300, 150);
     drawStatic();
-    drawBall();
     drawCup();
+    drawBall();
     var ship = {  // reset ship position for demo
       xBall,
       yBall
     }
     
-      shapes.strokeRect(ship.xBall - 2, ship.yBall - 2, 4, 4);
-      shapes.fillText("From", ship.xBall + 5, ship.yBall);
+      // shapes.strokeRect(ship.x, ship.y, 4, 4);
+      // shapes.fillText("From", ship.xBall + 5, ship.yBall);
   
     angle = (maxmovement.degrees - 90) / 180 * Math.PI; // compensate angle -90°, conv. to rad
     ship.xBall += maxmovement.amount * Math.cos(angle); // end ball x coordinate
@@ -255,30 +265,16 @@ var shapes = document.querySelector("canvas").getContext("2d");
     // console.log("this is new x coord: " + ship.xBall + "    " + "this is new y coord: " + ship.yBall )
     
   
-    shapes.strokeRect(20, 20, 4, 4);
-    shapes.fillText(maxmovement.degrees + "°", ship.xBall, ship.yBall);
+    // shapes.strokeRect(0, 0, 4, 4);
+    // shapes.fillText(maxmovement.degrees + "°", ship.xBall, ship.yBall); // <--- this is the preview
   
     xNewBall = ship.xBall;
     yNewBall = ship.yBall;
     maxmovement.degrees = maxmovement.degrees % 360;
   }
 
-  // ~~ dont add 265 into if statement.
-
-
-
   requestAnimationFrame(loop, 1000); // <-- keep this out
 })();
-
-
-// if preview = true {
-//   loop()
-
-// } else {
-// then turn off loop()
-// }
-
-// x = only runs the loops when x is set to false
 
 
 
@@ -287,11 +283,6 @@ console.log('angle: ' + angle)
 // // ~~~~~~~~ end of variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 var xShip = maxmovement.amount * Math.cos(angle) + xBall
 var yShip = maxmovement.amount * Math.sin(angle) + yBall
-
-// console.log('x ship y ship: ' + ship.xBall + " | "+ ship.yBall)
-// console.log('x newBall  y newBall: ' + xNewBall + " | "+ yNewBall)
-// var xPlayerMax = Math.cos(angle) * playerSwingDistance + xBall // <--- coordinates!
-// var yPlayerMax = Math.sin(angle) * playerSwingDistance + yBall // <--- coordinates!
 
 
 console.log('x start y start: ' + xStart + " | "+ yStart)
@@ -386,6 +377,8 @@ function drawStatic() {
     shapes.fill();
 
     // for some reason this has to be here??? or else the boxes wont fill properly
+
+   
     shapes.beginPath();
     shapes.fillStyle = "white"; // this is the hole cup 2
     shapes.arc(xHole, yHole, 10, 0, 5 * Math.PI);
@@ -424,11 +417,12 @@ function drawStatic() {
     shapes.fillStyle = "blue"; // this is the right pin
     shapes.fill();
 
-    shapes.strokeRect(ship.xBall - 2, ship.yBall - 2, 4, 4);
-    shapes.fillText("From", ship.xBall + 5, ship.yBall);
+    // shapes.strokeRect(ship.xBall - 2, ship.yBall - 2, 4, 4);
+    // shapes.fillText("From", ship.xBall + 5, ship.yBall);
 
-    shapes.strokeRect(ship.x, ship.y, 4, 4);
-    shapes.fillText(maxmovement.degrees + "°", ship.xBall, ship.yBall);
+    // shapes.strokeRect(ship.x, ship.y, 4, 4);
+    // shapes.fillText(maxmovement.degrees + "°", ship.xBall, ship.yBall); // <--- this is the preview
+    
 }
 
 
@@ -437,8 +431,6 @@ document.getElementById("stroke").innerText=`Stroke: ${numberOfStrokes}`;
 // document.getElementById("clubChoice").innerText= "Club: " + clubs[clubSelection].name;
 
 // ~~~~~second canvas~~~~~~~~
-
-
 
 
 function drawBall() {
@@ -463,7 +455,6 @@ function drawCup() {
 }
 
 
-
 // function drawfakeBall() {
 //   shapes.beginPath(); // <--- ball canvas 2
 //   shapes.arc(xPlayerMax, yCurrentMax, 5, 0, Math.PI*2); // <- fill xGraph, yGraph
@@ -479,20 +470,19 @@ function drawCup() {
 
 function animeBall() {
     shapes.clearRect(0, 0, layerOne.width, layerOne.height);
-
     drawStatic();
-    drawBall();
     drawCup();
-    
+    drawBall();
 }
 
 var ballIntervalId;
-// //!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function ballMovement() {
+
   setTimeout(function(){
-    ballIntervalId = setInterval(playerBall, 30);
+    ballIntervalId = setInterval(playerBall, 6);
   }, 0); // <--- adjust this number for ball movement delay
 }
+
 function playerBall() {
   
   drawStatic()
@@ -520,20 +510,34 @@ function playerBall() {
     // console.log("ths is the angle cos :" + Math.cos(angle))
   }
   //
-  if ( (Math.round(xBall) == Math.round(xNewBall)) &&  (Math.round(yBall) == Math.round(yNewBall))  ) {
+  if ((xBall + 1) > (xNewBall) && (xBall - 1) < (xNewBall + 1) && (yBall + 1) > (yNewBall) && (yBall - 1) < (yNewBall + 1)) {
+    preview = true
+    xBall = xNewBall;
+    yBall = yNewBall;
     console.log("ball is equaled");
     clearInterval(ballIntervalId)  
-    preview = true
   }
+
+  if ((xBall + 10) > (xHole) && (xBall - 10) < (xHole + 5) && (yBall + 10) > (yHole) && (yBall - 10) < (yHole + 5)) {
+                xBall = xHole;
+                yBall = yHole
+                console.log("ball is cleared");
+                clearInterval(ballIntervalId)
+                preview = false
+                animeBall()
+                
+        }
+    
   
-  console.log('x Ball  xnewBall: ' + xBall + " | " + xNewBall + " yBall yNewBall" + yBall + "  |  " + yNewBall)
   
-  console.log("ball isnt equaled");
+  // console.log('x Ball  xnewBall: ' + xBall + " | " + xNewBall + " yBall yNewBall : " + yBall + "  |  " + yNewBall)
   
-  
+  // console.log("ball isnt equaled");
+  clearInterval(ballMovement)
+  shapes.clearRect(0, 0, layerOne.width, layerOne.height);
   drawStatic()
-  drawBall();
   drawCup ();
+  drawBall ();
 }
 
 // console.log('*** playerBall() xBall:', xBall);
@@ -545,36 +549,6 @@ function playerBall() {
 // console.log("math cos : " + Math.cos(angle))
 // console.log('x ship y ship: ' + ship.xBall + " | "+ ship.yBall)
 // console.log('x newBall  y newBall: ' + xNewBall + " | "+ yNewBall)
-
-// delete me if it works \/ d   
-
-// new ball spot game logic ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// the i < 100 has to be something definitive.
-
-// for (let i = 0; i < 100; i++) {
-//   if (yBall < yNewBall) {
-      
-//     yBall++
-//     // console.log("ths is the angle sin :" + Math.sin(angle))
-      
-//   } else if (yBall > ship.yBall) {
-//     // yBall -= Math.sin(angle)
-//     yBall--
-//     // console.log("ths is the angle sin :" + Math.sin(angle))
-//   } 
-    
-// if (xBall < ship.xBall) {
-//   // xBall += Math.cos(angle) // <- clean this up
-//   xBall++
-//   // console.log("ths is the angle cos :" + Math.cos(angle))
-    
-// } else if (xBall > ship.xBall) {
-//   // xBall -= Math.cos(angle) // <- clean this up
-//   xBall--
-//   // console.log("ths is the angle cos :" + Math.cos(angle))
-// }
-// }
-
 
 
 
@@ -642,6 +616,11 @@ swingButton.addEventListener('click', (e) => {
     
   } else {
     // swing bar end
+    numberOfStrokes++
+    document.getElementById("stroke").innerText=`Stroke: ${numberOfStrokes}`;
+    console.log("Distance to Hole: " + distanceToHole)
+    console.log()
+    document.getElementById("menuDist").innerText=`Distance to Hole: ${distanceToHole}`;
     preview = false
     clearInterval(intervalId);
     shouldStartTimer = true;

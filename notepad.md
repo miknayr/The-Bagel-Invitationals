@@ -525,5 +525,9 @@ everything else is in an if statement, checking for preview if its true
 dont need to write an else statement
 
 
+if ( (math.round(xBall)) == )
+
+
+if round x ball = round new ball 
 
 
