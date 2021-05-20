@@ -120,3 +120,11 @@ need to figure out the angle situation
 5/19 3pm ;
 - fixed club selection and updates values too
 need to create algorithm for ball movement
+
+5/19 7pm ;
+- enabled dynamic club selection! maxdistance preview
+still need to fix swing bar to dynamically adjust based on click
+
+
+5/19 820pm update;
+- stable version with ball still homing in``

@@ -398,4 +398,15 @@ for(var i = 0; i < 5; i++){
     })(i);
 }
 
+ var playerSwingDistance = swingPower * clubs[clubSelection].value * .01
+
+
+var xCurrentMax = Math.cos(angle) * playerSwingDistance + xBall // <--- coordinates!
+var yCurrentMax = Math.sin(angle) * playerSwingDistance + yBall // <--- coordinates!
+
+
+when player chooses their angle, ball should move towards t hat angle spot, 
+using the maxmovement increment
+
+if xball < xcurrentmax
 
