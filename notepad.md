@@ -410,3 +410,42 @@ using the maxmovement increment
 
 if xball < xcurrentmax
 
+
+figure out the scope
+either refactor
+
+run whenever you change club 
+
+
+
+ var playerSwingDistance = swingPower * clubs[clubSelection].value * .01
+
+
+var xCurrentMax = Math.cos(angle) * playerSwingDistance + xBall // <--- coordinates!
+var yCurrentMax = Math.sin(angle) * playerSwingDistance + yBall // <--- coordinates!
+
+current max is the ball hit distance coordinate
+
+when player chooses their angle, ball should move towards t hat angle spot, 
+using the maxmovement increment
+
+if xball < xcurrentmax
+xball = xball + Math.cos(angle) // xball+= math.cos(angle)
+
+else xball > xcurrentmax
+xball = xball - Math.cos(angle)
+
+if yball < ycurrentmax
+yball = yball + Math.sin(angle)
+
+else yBall > yCurrentMax {
+    yball = yBall - math.sin(angle)
+}
+
+if ship == playerHitDistance
+clearinterval
+
+actualmovement.amount
+
+
+xball += actualmovement.amount * Math.cos(angle)

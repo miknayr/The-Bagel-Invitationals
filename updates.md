@@ -128,3 +128,9 @@ still need to fix swing bar to dynamically adjust based on click
 
 5/19 820pm update;
 - stable version with ball still homing in``
+
+
+5/19 10pm  update;
+-arrow key to change clubs
+ball still stuck in loop, need to fix / figure out win condition 
+- need to move ball to its play hit siwng distance
