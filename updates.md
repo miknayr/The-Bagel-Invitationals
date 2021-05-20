@@ -144,3 +144,13 @@ maybe fix degree situation
 otherwise, revert to xball = xhole situation
 
 need to fix the canvas or figure out angle
+
+
+
+5/20 12pm update;
+- ball moves again! and to the spot
+- figure out how to round the ball spots to clear the interval
+- re-create magnetic hole to "win the game"
+if ball = hole {
+    play win 
+}

@@ -493,7 +493,6 @@ function ballMovement() {
     ballIntervalId = setInterval(playerBall, 30);
   }, 0); // <--- adjust this number for ball movement delay
 }
-
 function playerBall() {
   
   drawStatic()
@@ -502,49 +501,50 @@ function playerBall() {
   animeBall(); // <-- check line 386 to implement delay
 
   
+  if (yBall < yNewBall) {
+    yBall++
+    // console.log("ths is the angle sin :" + Math.sin(angle))
+    
+  } else if (yBall > yNewBall) {
+    yBall--
+    // console.log("ths is the angle sin :" + Math.sin(angle))
+  } 
   
-  // console.log('*** playerBall() xBall:', xBall);
-  // console.log('*** playerBall() yBall:', yBall);
-  
-  // console.log('*** playerBall() ship.xBall:', ship.xBall);
-  // console.log('*** playerBall() ship.yBall:', ship.yBall);
-  // console.log("math sin : " + Math.sin(angle))
-  // console.log("math cos : " + Math.cos(angle))
-  // console.log('x ship y ship: ' + ship.xBall + " | "+ ship.yBall)
-  // console.log('x newBall  y newBall: ' + xNewBall + " | "+ yNewBall)
-    if (yBall < yNewBall) {
-      yBall++
-      // console.log("ths is the angle sin :" + Math.sin(angle))
-        
-    } else if (yBall > yNewBall) {
-      yBall--
-      // console.log("ths is the angle sin :" + Math.sin(angle))
-    } 
-      
   if (xBall < xNewBall) {
-
+    
     xBall++
     // console.log("ths is the angle cos :" + Math.cos(angle))
-      
+    
   } else if (xBall > xNewBall) {
-     xBall--
+    xBall--
     // console.log("ths is the angle cos :" + Math.cos(angle))
   }
-  if ((Math.round(xBall) == Math.round(xNewBall)) && (Math.round(yBall) == Math.Round(yNewBall))) {
+  //
+  if ( (Math.round(xBall) == Math.round(xNewBall)) &&  (Math.round(yBall) == Math.round(yNewBall))  ) {
     console.log("ball is equaled");
-    console.log('x Ball  xnewBall: ' + xBall + " | " + xNewBall)
     clearInterval(ballIntervalId)  
     preview = true
   }
-
-
+  
+  console.log('x Ball  xnewBall: ' + xBall + " | " + xNewBall + " yBall yNewBall" + yBall + "  |  " + yNewBall)
+  
   console.log("ball isnt equaled");
   
-
+  
   drawStatic()
   drawBall();
   drawCup ();
 }
+
+// console.log('*** playerBall() xBall:', xBall);
+// console.log('*** playerBall() yBall:', yBall);
+
+// console.log('*** playerBall() ship.xBall:', ship.xBall);
+// console.log('*** playerBall() ship.yBall:', ship.yBall);
+// console.log("math sin : " + Math.sin(angle))
+// console.log("math cos : " + Math.cos(angle))
+// console.log('x ship y ship: ' + ship.xBall + " | "+ ship.yBall)
+// console.log('x newBall  y newBall: ' + xNewBall + " | "+ yNewBall)
 
 // delete me if it works \/ d   
 

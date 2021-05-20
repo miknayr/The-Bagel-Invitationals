@@ -505,3 +505,25 @@ ball is chasing the preview ball.
 
 
 if the ball is moving to the reference, 
+
+
+
+global variable = preview
+everytime loop is ran, it does an "if check" for preview state.
+it runs if preview = true
+
+when you do the "swing", set the preview to false
+which stops the loop from running
+
+
+when the ballmovement function reaches it destiation,
+
+loop request animation frame goes forever.
+
+
+everything else is in an if statement, checking for preview if its true
+dont need to write an else statement
+
+
+
+
