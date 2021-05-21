@@ -15,11 +15,15 @@
     <audio id="hype">
         <source src="sounds/fisher - losing-it.m4a" type="audio/mpeg">
     </audio>
-    <audio id="lowstinger">
-        <source src="sounds/lowstinger.m4a" type="audio/mpeg">
-    </audio>
+  
     <audio id="swing">
         <source src="sounds/swingsound.m4a" type="audio/mpeg">
+    </audio>
+    <audio id="cmontiger">
+        <source src="sounds/cmontiger3.m4a" type="audio/mpeg">
+    </audio>
+    <audio id="cup">
+        <source src="sounds/holet.m4a" type="audio/mpeg">
     </audio>
     
 
@@ -29,9 +33,10 @@
        
           
              <div class="row">
+                 <div class="col-md-5">
                 
-                <div class="col-md-5 bg-primary">
-                    <canvas id="layerOne" width="530" height="1000" style="border:5px solid black"></canvas>
+                    <canvas id="layerOne" width="540" height="950" style="border:5px solid black"></canvas>
+                   
                     <form>
                     <div id="myProgress">
                         <div id="myBar"></div>
@@ -42,7 +47,7 @@
                     </form>
                 </div>
 
-                <div class="col-md-3 bg-warning">
+                <div class="col-md-3" id="status">
                     <div class="row">
                          <div id="titleBar">
                           <div>
@@ -55,7 +60,7 @@
                                <h3>Caddie</h3>
                                <p id="menuDist">Distance to Hole: </p>
                                <p id="stroke">Stroke:</p>
-                               <p id="clubSelection">Club:</p>
+                               <p id="clubSelection">Club: Driver ~300</p>
                                
                                <button id="choice1">
                                    +
@@ -66,28 +71,25 @@
                             </div>
                         </div>
 
-                                <div class='row'>
-                                    <div id="menu2">
-                                        <h3>Ball</h3>
-                                        <img class="img" id="bagel" src="images/bagelball-min.png"> 
-                                        
-                                    </div>
-                                </div>
-
-                </div>
-                <div class="col-md-3 bg-success">
-                    <div class="row">
-                        <div id="meme">
-                            screen
-                            <p class="result-message"><img id="z" src="" width="400px" height="auto"></p>
-                            <!-- <p class="result-message"><img id="y" src="" width="300px" height="auto"></p> -->
-                            
-                            
+                        <div class='row'>
+                            <div id="menu2">
+                                <h3>Ball</h3>
+                                <img class="img" id="bagel" src="images/bagelball-min.png"> 
+                                
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-            </div>
+                        <div class='row'>
+                            <div id="meme">
+                                <p class="result-message"><img id="z" src="" width="500px" height="auto"></p>
+    
+                            </div>
+                        </div>
+                        
+
+
+                </div>
+              </div>
 
         </div>
 

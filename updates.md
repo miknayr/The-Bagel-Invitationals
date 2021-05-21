@@ -166,3 +166,14 @@ ball will go into hole if it crosses over it.
 bugs to fix; 
 
 need to fix the ball rotation bug where 0 != 0
+
+
+5/20 4pm update;
+- adjusted some styling elements
+
+
+5/20 830pm update;
+- added sounds, some styling 
+- added some sounds
+- added HIO feature
+- can ship this and feel good about it.
