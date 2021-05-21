@@ -185,11 +185,6 @@ var ship = {  // reset ship position for demo
   yBall
 }
 
-// var playerHitDistance = {   // <--- this is the comparison to stop the loop from running. if ship equal to player hit distance, reset the swing to new position.
-//     xPlayerMax,
-//     yPlayerMax
-// }
-
 document.getElementById('choice1').addEventListener('click', clubPlus);
 document.getElementById('choice2').addEventListener('click', clubMinus);
 
@@ -201,10 +196,6 @@ function clubPlus() {
   }
 
   document.querySelector('#clubSelection').innerText = "Club: " + clubs[clubSelection].name + " ~" + clubs[clubSelection].value
-  // console.log("the current club selection is : " + clubs[clubSelection].name)
-  // console.log("the current club distance is : " + clubs[clubSelection].value)
-  // console.log('x ship y ship: ' + xShip + " | " + yShip)
-
   maxmovement.amount = clubs[clubSelection].value
 }
 
@@ -216,9 +207,6 @@ function clubMinus() {
       clubSelection = 0;
   }
   document.querySelector('#clubSelection').innerText = "Club: " + clubs[clubSelection].name + " ~" + clubs[clubSelection].value;
-  // console.log("the current club selection is : " + clubs[clubSelection].name)
-  // console.log("the current club distance is : " + clubs[clubSelection].value)
-  // console.log('x ship y ship: ' + xShip + " | " + yShip)
   maxmovement.amount = clubs[clubSelection].value
 }
 
@@ -245,7 +233,7 @@ var shapes = document.querySelector("canvas").getContext("2d");
     }
     
     // shapes.strokeRect(ship.x, ship.y, 4, 4);
-    // shapes.fillText("From", ship.xBall + 5, ship.yBall);
+    // shapes.fillText("From", ship.xBall + 5, ship.yBall); <--- this is part of the preview
     
     angle = (maxmovement.degrees - 90) / 180 * Math.PI; // compensate angle -90°, conv. to rad
     ship.xBall += maxmovement.amount * Math.cos(angle); // end ball x coordinate
@@ -290,9 +278,7 @@ console.log('x hole y hole: ' + xHole + " | "+ yHole)
 
 holeDistance.beginPath(0,0); // <--- not sure what this does.
 holeDistance.moveTo(xStart, yStart); // xStart,yStart <---- plug in the above
-// holeDistance.lineTo(xHole, yHole); // xHole, yHole <--- plug in the above
 
-// this is the green hole location
 
 shapes.rect(xGreen, yGreen, wGreen, hGreen); //can add border for rough edge, 15px maybe  <-- this is aesthetics
 shapes.fillStyle = "#7cfc00"; // this is the green box
@@ -513,7 +499,6 @@ function hioBall() {
   } else if (xBall > xHole) {
     xBall--
   }
-
     // document.getElementById("menuDist").innerText=`Distance to Hole: ${theBrendan(xBall, yBall, xHole, yHole)}`;
     document.getElementById("menuDist").innerText= "Distance to Hole: 🚀";
     // `Distance to Hole: ${distanceToHole}`
@@ -538,19 +523,6 @@ function hioBall() {
   drawCup ();
   drawBall ();
 }
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-// console.log('*** playerBall() xBall:', xBall);
-// console.log('*** playerBall() yBall:', yBall);
-
-// console.log('*** playerBall() ship.xBall:', ship.xBall);
-// console.log('*** playerBall() ship.yBall:', ship.yBall);
-// console.log("math sin : " + Math.sin(angle))
-// console.log("math cos : " + Math.cos(angle))
-// console.log('x ship y ship: ' + ship.xBall + " | "+ ship.yBall)
-// console.log('x newBall  y newBall: ' + xNewBall + " | "+ yNewBall)
-
 
 // function cleanUp() {
  
@@ -605,6 +577,11 @@ swingButton.addEventListener('click', (e) => {
 
 
 
+
+} // ~~~~~~~~~~~~~ this is the end of the dom content loader ~~~~~~~~~~~~~~~ //
+
+
+
     // console.log("the current club distance is : " + clubs[clubSelection].value)
     // console.log("the ship x ball is : " + ship.xBall)
     // console.log("the ship x ball is : " + ship.yBall)
@@ -616,12 +593,6 @@ swingButton.addEventListener('click', (e) => {
     //  console.log("this is the distance to hole: " + distanceToHole);
     //  console.log("this is winning distance: " + winningDistance)
 
-
-
-
-}
-
-// ~~~~~~~~~~~~~ this is the end of the dom content loader ~~~~~~~~~~~~~~~ //
 
 
 // swingButton.addEventListener('click', () => {
