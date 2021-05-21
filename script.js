@@ -15,25 +15,26 @@ function tiger() {
   document.getElementById("z").src="./images/tiger.gif"
 }
 
-function ballWin() { // celebration;
-   setTimeout(function() {
-      hype.volume = 0.3
-      hype.play();
-      tiger();
-  }, 4500);
-  clearInterval(ballWin)
-  document.getElementById("z").src=""
-}
+// function ballWin() { // celebration;
+//    setTimeout(function() {
+//     document.getElementById("z").src=""
+//   }, 8000);
+//   clearInterval(ballWin)
+ 
+// }
 
 const holeInOne = () => {
   console.log("this is swing power" + swingPower)
-  if (swingPower == 100 ) { // <--- change to get HiOs or not
-        cmontiger.volume = .2
+  if (swingPower < 100 ) { // <--- change to get HiOs or not
+        cmontiger.volume = .4
       cmontiger.play();
+      hype.volume = 0.2
+      hype.play();
+      tiger();
       hio()
         //  gamestatus = false
       ballWin();
-      cleanUp();
+      // cleanUp();
      
    } else {
     swing.volume = 0.4
@@ -553,13 +554,13 @@ function hioBall() {
 // console.log('x newBall  y newBall: ' + xNewBall + " | "+ yNewBall)
 
 
-function cleanUp() {
+// function cleanUp() {
  
-  setTimeout(function() {
-    document.getElementById("z").src=""
-   }, 3000);
+//   setTimeout(function() {
+//     document.getElementById("z").src=""
+//    }, 3000);
     
-}
+// }
 
 swingButton.addEventListener('click', (e) => {
   

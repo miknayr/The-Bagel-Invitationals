@@ -1,5 +1,5 @@
 .mainContent {
-  position: relative;
+  position: left;
   font-family: comic sans ms;
 
 } 
@@ -76,7 +76,8 @@
 
 #titleBar{
   width: auto;
-  height: 50px;
+  height: auto;
+  margin-top: 10px;
   /* border: 5px solid black; */
 }
 
@@ -86,11 +87,9 @@
   width: 250px;
   height: 250px;
   
-  
 }
 #z { 
-  margin-left: -565px;
-  margin-top: -200px;
+ 
 
 }
 

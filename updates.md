@@ -177,3 +177,7 @@ need to fix the ball rotation bug where 0 != 0
 - added some sounds
 - added HIO feature
 - can ship this and feel good about it.
+thigns to fix?
+- fix the walls, ball goes out of bounds = reset to last spot
+
+- add more sounds and reaction memes
