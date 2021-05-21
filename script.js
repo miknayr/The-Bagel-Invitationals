@@ -26,9 +26,9 @@ function tiger() {
 const holeInOne = () => {
   console.log("this is swing power" + swingPower)
   if (swingPower == 100 ) { // <--- change to get HiOs or not
-        cmontiger.volume = .2
+        cmontiger.volume = .1
       cmontiger.play();
-      hype.volume = 0.3
+      hype.volume = 0.05
       hype.play();
       tiger();
       hio()
@@ -37,7 +37,7 @@ const holeInOne = () => {
       // cleanUp();
      
    } else {
-    swing.volume = 0.2
+    swing.volume = 0.1
     swing.play();
     ballMovement()
      
