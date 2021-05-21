@@ -16,8 +16,8 @@ Everybody loves to play virtual golf even if they dont enjoy golf itself. This g
 - HTML 5 canvas
 
 # MVP Goals
-- [ ] Having the formula for game logic (gauging distance + angle = hole location) work as intended.
-- [ ] being able to play the game from top down map only
+- [x] Having the formula for game logic (gauging distance + angle = hole location) work as intended.
+- [x] being able to play the game from top down map only
 - [ ] render the starting screen at the teebox
 - [ ] render swing animation (two frames)
 - [ ] render the "ball" going short, long or in the hole via ball animation

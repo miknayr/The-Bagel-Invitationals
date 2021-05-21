@@ -475,8 +475,6 @@ function playerBall() {
                 xBall = xHole;
                 yBall = yHole
                 swing.volume = 0
-                holet.volume = 1
-                holet.play();
                 console.log("ball is cleared");
                 clearInterval(ballIntervalId)
                 preview = false
