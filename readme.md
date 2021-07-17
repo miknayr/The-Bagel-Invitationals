@@ -2,6 +2,7 @@
 
 This is a golf game. 
 taking in judgement, precision, and interpretation to get a hole in one. 
+https://miknayr.github.io/The-Bagel-Invitationals/
 
 # About
 For this project, I plan on making a simple golf game, using linear algebra and simple math.
