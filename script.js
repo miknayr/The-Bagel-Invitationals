@@ -571,7 +571,7 @@ swingButton.addEventListener('click', (e) => {
     clearInterval(intervalId);
     shouldStartTimer = true;
     holeInOne();
-    cleanUp();
+    // cleanUp();
   }
 })
 
