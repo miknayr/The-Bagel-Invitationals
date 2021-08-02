@@ -19,24 +19,17 @@ Everybody loves to play virtual golf even if they dont enjoy golf itself. This g
 # MVP Goals
 - [x] Having the formula for game logic (gauging distance + angle = hole location) work as intended.
 - [x] being able to play the game from top down map only
-- [ ] render the starting screen at the teebox
-- [ ] render swing animation (two frames)
-- [ ] render the "ball" going short, long or in the hole via ball animation
-- [ ] use keyboard keys to allow choosing direction of attack and to control power.
-- [ ] When getting a hole-in-one, having an audible queue (ball landing in the hole) and celebration
-- [ ] if you "miss", having the power bar adjust for the distance remaining from ball to hole location
+- [x render the starting screen at the teebox
+- [x use keyboard keys to allow choosing direction of attack and to control power.
+- [x When getting a hole-in-one, having an audible queue (ball landing in the hole) and celebration
+
 
 
 
 # Stretch Goals
- - [ ] Add ambient sounds
- - [ ] Being able to "select your club", being able to choose club distance
- - [ ] stylizing the game to be fluid with 3 different animations. one for swing (two frames) one for ball travel, and one for visual landing of ball whether its over, under, or in!
-
- - [ ] document UX testing and create UX case study with feedback
-
+- [x] Add ambient sounds
+- [x] Being able to "select your club", being able to choose club distance
 - [ ] mega stretch goal. Being able to convert putting into a minigame inside of the game. creating a smaller canvas that has challenges of the lie (things that affect the ball angle and speed?) 
-
 
  - [ ] mega stretch multiplayer capability to compete against your friend online
 
